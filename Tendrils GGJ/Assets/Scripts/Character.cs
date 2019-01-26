@@ -136,11 +136,12 @@ public class Character : MonoBehaviour {
             Vector2 unitvector = directionvector.normalized;
             x = (unitvector.x * Camera.main.orthographicSize / 1.25f) + transform.position.x;
             y = (unitvector.y * Camera.main.orthographicSize / 1.25f) + transform.position.y;
-            float angle_ = Mathf.Atan2(unitvector.y, unitvector.x) * Mathf.Rad2Deg;
-            Debug.Log(angle_);
+            float angle_ = Mathf.Atan2(unitvector.y, unitvector.x);
+            Quaternion rot = Quaternion.Euler(new Vector3(0.0f, 0.0f, angle_ - Mathf.PI / 2.0f));
             //directionArrows.Add(Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), transform.rotation));
             GameObject arrow;
-            arrow = Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), new Quaternion(0.0f, 0.0f, angle_ + 90.0f, 0.0f));
+            arrow = Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), rot);
+            Debug.Log(arrow.transform.rotation);
             Destroy(arrow, 0.02f);
         }
     }
