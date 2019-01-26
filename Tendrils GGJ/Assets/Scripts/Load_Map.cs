@@ -20,7 +20,7 @@ public static class LoadMap {
                 int y = int.Parse(pp[1]);
                 int scale = int.Parse(pp[2]);
                 int grav = int.Parse(pp[3]);
-                string spriteImage = pp[4];
+                string spriteImage = pp[5];
 
                 // Rotation
                 float rot = newPlanetRotation();
@@ -43,6 +43,6 @@ public static class LoadMap {
     }
 
     private static float newPlanetRotation() {
-        return UnityEngine.Random.Range(0.01f, 0.05f);
+        return UnityEngine.Random.Range(0.001f, 0.005f);
     }
 }

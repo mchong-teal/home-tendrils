@@ -113,7 +113,7 @@ public class Character : MonoBehaviour {
         }
     }
 
-    void Update() {
+    void FixedUpdate() {
         
         InputManager();
         MoveManager();
