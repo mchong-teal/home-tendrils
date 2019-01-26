@@ -93,22 +93,25 @@ public class Character : MonoBehaviour {
 
         
         if (isGrounded) {
-            rb.velocity = Vector2.zero;
-            planetAngle -= dx * planetSpeed;
-            Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * ((planetRadius * planetScale) + 1.2f);
-            transform.position = planetCenter + offset;
+            // TODO: Move to planetMovement Manager
+            PlanetMoveManager();
         }
         else {
-            Vector3 spaceMovement = new Vector3(dx * spaceSpeed, dy * spaceSpeed, 0.0f);
-            rb.AddForce(spaceMovement);
-            planetAngle = 0;
-            isOnPlanet = false;
+            SpaceMoveManager();
         }
-        
-        
     }
 
-    void OnCollisionEnter2D(Collision2D collision) {
+    void PlanetMoveManager() {
+        rb.velocity = Vector2.zero;
+        planetAngle -= dx * planetSpeed;
+        Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * ((planetRadius * planetScale) + 1.2f);
+        transform.position = planetCenter + offset;
+    }
 
+    void SpaceMoveManager() {
+        Vector3 spaceMovement = new Vector3(dx * spaceSpeed, dy * spaceSpeed, 0.0f);
+        rb.AddForce(spaceMovement);
+        planetAngle = 0;
+        isOnPlanet = false;
     }
 }
