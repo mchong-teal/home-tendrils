@@ -16,6 +16,7 @@ public class Money_System : MonoBehaviour
         money_01 = 0.0f;
         moneyText_01.text = "P1 doubloons: " + money_01;
         money_02 = 0.0f;
+        moneyText_01.text = "P2 doubloons: " + money_02;
     }
 
     public void gainMoney_01(float GainM)
