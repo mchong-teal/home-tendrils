@@ -3,23 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class LoadMap {
+
+    public const int CSV_ENTRIES = 2;
     public static List<PlanetParam> LoadPlanets()
     {
         List<PlanetParam> planets = new List<PlanetParam>();
 
-        for (int i = 0; i < 10; i++) {
-            // Scale, Position
-            int x = Random.Range(-300, 300);
-            int y = Random.Range(-300, 300);
-            int scale = Random.Range(6, 24);
-            // Grav strength
-            int grav = Random.Range(-150, -100);
+        TextAsset mapData = Resources.Load("map") as TextAsset;
+        List<string> planetData = new List<string>(mapData.text.Split('\n'));
+        planetData.RemoveAt(0); //Remove header line
+        foreach(string planetLine in planetData) {
+            string[] pp = planetLine.Split(',');
+            int x = int.Parse(pp[0]);
+            int y = int.Parse(pp[1]);
+            int scale = int.Parse(pp[2]);
+            int grav = int.Parse(pp[3]);
+            string spriteImage = pp[4];
+
             // Rotation
             float rot = newPlanetRotation();
 
-            PlanetParam p =  new PlanetParam(x, y, scale, grav, rot, "");
+            PlanetParam p =  new PlanetParam(x, y, scale, grav, rot, spriteImage);
             planets.Add(p);
         }
+
         return planets;
     }
 

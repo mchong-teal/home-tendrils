@@ -1,0 +1,8 @@
+x,y,size,gravity,sprite
+0,0,6,-100,earth
+50,0,8,-100,earth
+0,50,15,-100,earth
+50,50,6,-100,earth
+100,100,12,-100,earth
+150,50,24,-100,earth
+200,250,6,-100,earth
