@@ -10,7 +10,10 @@ public class Character : MonoBehaviour {
     public float spaceSpeed;
     public float planetSpeed;
     public float groundCheckRadius;
+    [Range(50, 100)]
+    public float planetCheckRadius;
     public Transform groundCheck;
+    public Transform ArrowPrefab;
     public LayerMask isGroundLayer;
 
     // private variables
@@ -20,13 +23,13 @@ public class Character : MonoBehaviour {
     bool jf;
     bool isGrounded;
     bool isOnPlanet;
-
     Fuel_System fs;
     Vector2 planetCenter;
     Vector2 planetRadiusVector;
     float planetAngle;
     float planetRadius;
     float planetScale;
+    List<Transform> directionArrows;
 
     void Start() {
 
@@ -61,7 +64,12 @@ public class Character : MonoBehaviour {
             groundCheckRadius = 0.1f;
         }
 
+        if (planetCheckRadius <= 10) {
+            planetCheckRadius = 10;
+        }
+
         isGrounded = false;
+        directionArrows = new List<Transform>();
     }
 	
 	
@@ -73,6 +81,7 @@ public class Character : MonoBehaviour {
 
     void MoveManager() {
 
+        GroundCheck();
         PlanetCheck();
         if (isGrounded) { PlanetMoveManager(); }
         else { SpaceMoveManager(); }
@@ -85,7 +94,7 @@ public class Character : MonoBehaviour {
         jf = Input.GetButton("Jump");
     }
 
-    void PlanetCheck() {
+    void GroundCheck() {
 
         if (groundCheck) {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
@@ -100,6 +109,21 @@ public class Character : MonoBehaviour {
                     isOnPlanet = true;
                 }
             }
+        }
+    }
+
+    void PlanetCheck() {
+
+        Collider2D[] planetcheck = Physics2D.OverlapCircleAll(transform.position, planetCheckRadius, isGroundLayer);
+        for (int i = 0; i < planetcheck.Length; i++) {
+            float x, y;
+            Vector2 unitvector = transform.position - planetcheck[i].transform.position;
+            x = unitvector.x;
+            y = transform.position.y - planetcheck[i].transform.position.y;
+            Debug.Log(Camera.main.orthographicSize);
+            x = Mathf.Clamp(x, Camera.main.transform.position.x - Camera.main.orthographicSize / 2, Camera.main.transform.position.x + Camera.main.orthographicSize / 2);
+            y = Mathf.Clamp(y, Camera.main.transform.position.x - Camera.main.orthographicSize / 2, Camera.main.transform.position.y + Camera.main.orthographicSize / 2);
+            directionArrows.Add(Instantiate(ArrowPrefab.transform, new Vector3(x, y, 0.0f), Quaternion.identity));
         }
     }
 
