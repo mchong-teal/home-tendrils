@@ -14,8 +14,10 @@ public class NewBehaviourScript : Editor {
     void OnSceneGUI() {
 
         Character ch = (Character)target;
+        Vector2 size = new Vector2(ch.groundCheckRadius / 2.5f, ch.groundCheckRadius);
         Handles.color = Color.white;
-        Handles.DrawWireArc(ch.transform.position, Vector3.forward, Vector3.up, 360, ch.groundCheckRadius);
-        Handles.DrawWireArc(ch.transform.position, Vector3.forward, Vector3.up, 360, ch.planetCheckRadius);
+        Handles.DrawWireCube(ch.transform.GetChild(0).position, size);
+        //Handles.DrawWireArc(ch.transform.GetChild(0).position, Vector3.forward, Vector3.up, 360, ch.groundCheckRadius);
+        Handles.DrawWireArc(ch.transform.GetChild(0).position, Vector3.forward, Vector3.up, 360, ch.planetCheckRadius);
     }
 }
