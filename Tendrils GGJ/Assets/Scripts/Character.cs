@@ -145,7 +145,7 @@ public class Character : MonoBehaviour {
 
     void PlanetMoveManager() {
         rb.velocity = Vector2.zero;
-        planetAngle -= (dx * planetSpeed);
+        planetAngle -= (dx * planetSpeed) + planetRotation;
         Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * ((planetRadius * planetScale) + 1.2f);
         transform.position = planetCenter + offset;
     }

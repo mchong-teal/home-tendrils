@@ -30,7 +30,7 @@ public class Map_Gen : MonoBehaviour
             // Grav strength
             int grav = Random.Range(-98, -49);
             // Rotation
-            int rot = Random.Range(1, 10);
+            float rot = Random.Range(0.01f, 0.05f);
 
             Planet newPlanet = (Planet) Instantiate(planet);
             newPlanet.InitPlanet(position, scale, grav, rot);

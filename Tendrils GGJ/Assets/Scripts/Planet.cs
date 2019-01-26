@@ -9,7 +9,7 @@ public class Planet: MonoBehaviour
 
     public int rotation;
     // Creates a Planet
-    public void InitPlanet(Vector3 position, int sizeRatio, int gravStrength, int rotation)
+    public void InitPlanet(Vector3 position, int sizeRatio, int gravStrength, float rotation)
     {
         this.transform.position = position;
         this.transform.localScale = new Vector3(Constants.PLAYER_SCALE * sizeRatio, Constants.PLAYER_SCALE * sizeRatio, 0);
@@ -27,7 +27,7 @@ public class Planet: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.Rotate(0, 0, Time.deltaTime * this.rotation);
+        transform.Rotate(0, 0, this.rotation);
     }
 
 }
