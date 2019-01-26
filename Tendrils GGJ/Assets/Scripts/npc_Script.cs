@@ -10,9 +10,9 @@ public class npc_Script : MonoBehaviour
     public Text myTextBox;
     public bool questGiven;
     public bool questDone;
-    public TextMeshPro m_Text;
+    
     public TextMeshProUGUI mytextpro;
-    public TextContainer m_TextContainer;
+   
     private void Start()
     {
         questGiven = false;

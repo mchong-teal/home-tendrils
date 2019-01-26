@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class Money_System : MonoBehaviour
 {
     public float money_01;   //money variable
     public float money_02;
-    public Text moneyText_01;   //text for ui
-    public Text moneyText_02;
-    
+   
+    public TextMeshProUGUI moneyText_01; //text for ui
+    public TextMeshProUGUI moneyText_02;
     public int[] Relics = new int[3];
     // Start is called before the first frame update
     void Start()
