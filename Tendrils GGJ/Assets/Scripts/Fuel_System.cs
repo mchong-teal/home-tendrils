@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +7,8 @@ using UnityEngine.UI;
 public class Fuel_System : MonoBehaviour
 {
     public bool JetOn;
+    public bool delay;
+    public bool isRunning;
     public float fuel;
     public float maxFuel;
     public Slider fuelslider;
@@ -14,6 +17,8 @@ public class Fuel_System : MonoBehaviour
     void Start()
     {
         JetOn = false;
+        isRunning = false;
+        delay = true;
         maxFuel = 100.0f;
         fuel = maxFuel;
         fuelslider.maxValue = maxFuel;
@@ -25,13 +30,16 @@ public class Fuel_System : MonoBehaviour
     void Update()
     {
         fuelslider.value = fuel;
-        if (JetOn ==true) //costs for using fuel
+      
+        if (JetOn == false) //recharge for fuel
         {
-            fuel = fuel - 0.016f;
-        }
-        if(JetOn==false) //recharge for fuel
-        {
-            StartCoroutine(FuelRecharge1());
+            if (isRunning == false)
+            {
+                StartCoroutine(FuelRecharge1());
+                
+
+            
+             }
         }
         if (fuel>maxFuel)
         {
@@ -41,24 +49,28 @@ public class Fuel_System : MonoBehaviour
         {
             fuel = 0.0f;
         }
-        if (Input.GetButton("Jump") && fuel < 0.0f ){
+        if (Input.GetButton("Jump") & fuel > 0.0f ){
             JetOn = true;
+            isRunning = true;
+            delay = false;
+            fuel = fuel - 0.16f;
+            
         }
-        if (Input.GetButtonUp("Jump"))
+        else
         {
             JetOn = false;
         }
     }
 
-
-
-
+   
 
     IEnumerator FuelRecharge1() //needed to use this to add a delay to the recharge
     {
-  
+        isRunning = true;
             yield return new WaitForSeconds(3.0f);
-        fuel = fuel + 0.16f;
+        delay = true;
+       
+
 
     }
 }
