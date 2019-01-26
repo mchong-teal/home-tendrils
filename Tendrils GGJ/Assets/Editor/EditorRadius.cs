@@ -10,7 +10,7 @@ public class NewBehaviourScript : Editor {
 
     // private variables
 
-
+    
     void OnSceneGUI() {
 
         Character ch = (Character)target;
