@@ -175,21 +175,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 9068466969699316183, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 9068466969974617194, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: planetCheckRadius
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 9068466969974617194, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: groundCheckRadius
-      value: 5.8
-      objectReference: {fileID: 0}
     - target: {fileID: 9068466969974617206, guid: 80c8f3822a15105409dabc825d25eba9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -322,11 +307,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9154755328421481807, guid: 592f8da86a87ab6448bce69c1e501762,
-        type: 3}
-      propertyPath: orthographic size
-      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 9154755329410719699, guid: 592f8da86a87ab6448bce69c1e501762,
         type: 3}

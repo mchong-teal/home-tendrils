@@ -7,25 +7,39 @@ using UnityEngine;
 public class Character : MonoBehaviour {
 
     // public variables
+    // Speed
     public float spaceSpeed;
     public float planetSpeed;
+    
+    // Checks 
     [Range(0, 10)]
     public float groundCheckRadius;
     [Range(50, 250)]
     public float planetCheckRadius;
     public Transform groundCheck;
-    public GameObject ArrowPrefab;
     public LayerMask isGroundLayer;
+
+    // Arrow prefab
+    public GameObject ArrowPrefab;
+    
 
     // private variables
     Rigidbody2D rb;
+
+    // Input Checks
     float dx;
     float dy;
     bool jf;
     bool jump;
+
+    // Checks
     bool isGrounded;
     bool isOnPlanet;
+
+    // Fuel System
     Fuel_System fs;
+
+    // Relative to planet stuff
     Vector2 planetCenter;
     Vector2 planetRadiusVector;
     float planetAngle;
