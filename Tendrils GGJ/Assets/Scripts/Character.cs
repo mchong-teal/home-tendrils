@@ -32,6 +32,7 @@ public class Character : MonoBehaviour {
     float planetRadius;
     float planetRotation;
     float planetScale;
+    Animator anim;
 
     void Start() {
 
@@ -70,14 +71,39 @@ public class Character : MonoBehaviour {
             planetCheckRadius = 10;
         }
 
+        anim = GetComponent<Animator>();
+        
+        if (!anim)
+        {
+
+            Debug.LogError("Animator not found on object");
+        }
+
         isGrounded = false;
     }
 	
-	
-    void Update() {
+	void AnimatorManager()
+    {
+        if (anim)
+        {
+            if (dx < 0 || dx > 0)
+            {
+                anim.SetFloat("Movement", 1.0f);
+            } else if (dy < 0 || dy > 0)
+            {
+                anim.SetFloat("Movement", 1.0f);
+            } else
+            {
+                anim.SetFloat("Movement", 0.0f);
+            }
+        }
+    }
 
+    void Update() {
+        
         InputManager();
         MoveManager();
+        AnimatorManager();
     }
 
     void MoveManager() {
