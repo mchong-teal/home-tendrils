@@ -22,6 +22,7 @@ public struct PlanetParam
        this.spriteImage = spriteImage;
    }
 }
+
 public class Planet: MonoBehaviour
 {
     // Refs to Unity components
