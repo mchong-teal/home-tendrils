@@ -4,66 +4,75 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Fuel_System : MonoBehaviour
-{
-    public bool JetOn;
+[RequireComponent(typeof(Rigidbody2D))]
+public class Fuel_System : MonoBehaviour {
+
+    // public
     public float delay;
     public float maxDelay;
     public float fuel;
     public float maxFuel;
-    public Slider fuelslider;
-    Rigidbody2D playerRigidbody;
     public float jetForce;
-    // Start is called before the first frame update
-    void Start()
-    {
+    public Slider fuelslider;
 
+    // private
+    bool JetOn;
+    float fuelTick;
+    float refillSpeed;
+    Rigidbody2D rb;
+
+    // Start is called before the first frame update
+    void Start() {
+
+        if (!rb) {
+            rb = GetComponent<Rigidbody2D>();
+        }
+
+        if (maxDelay <= 0) {
+            maxDelay = 3.0f;
+            Debug.LogWarning("Max Delay not set properly in " + name + ". Defaulting to: " + maxDelay);
+        }
+
+        if (maxFuel <=0 || maxFuel>= 500) {
+            maxFuel = 100.0f;
+            Debug.LogWarning("Max Fuel not set properly in " + name + ". Defaulting to: " + maxFuel);
+        }
+
+        if (jetForce <= 0 || jetForce >= 15) {
+            jetForce = 2.0f;
+            Debug.LogWarning("Jet Force not set properly in " + name + ". Defaulting to: " + jetForce);
+        }
+
+        // init
         JetOn = false;
-        maxDelay = 3.0f;
+        fuelTick = maxFuel / 100.0f;
+        refillSpeed = maxFuel / 100.0f;
         delay = maxDelay;
-        maxFuel = 100.0f;
         fuel = maxFuel;
         fuelslider.maxValue = maxFuel;
         fuelslider.value = fuel;
-        playerRigidbody = GetComponent<Rigidbody2D>();
-        jetForce = 2.0f;
-
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+
         fuelslider.value = fuel;
       
-        if (JetOn == false) //recharge for fuel
-        {
+        if (JetOn == false) { //recharge for fuel
             delay -= Time.deltaTime;
-            if (delay <= 0.0f) {
-                fuel = fuel + 2.0f;
-            }
+            if (delay <= 0.0f) { fuel += fuelTick * refillSpeed; }             
         }
-        if (fuel>maxFuel)
-        {
-            fuel = maxFuel;
-        }
-        if(fuel<0.0f)
-        {
-            fuel = 0.0f;
-        }
+
+        if (fuel > maxFuel) { fuel = maxFuel; }
+        else if (fuel < 0.0f) { fuel = 0.0f; }
+
         if (Input.GetButton("Jump") & fuel > 0.0f ){
-            JetOn = true;
+            
             delay = maxDelay;
-            fuel = fuel - 0.5f;
-            playerRigidbody.AddForce(transform.right *jetForce );
-
+            fuel -= fuelTick;
+            rb.AddForce(transform.right * jetForce);
+            JetOn = true;
         }
-        else
-        {
-            JetOn = false;
-        }
+        else { JetOn = false; }
     }
-
-   
-
-    
 }
