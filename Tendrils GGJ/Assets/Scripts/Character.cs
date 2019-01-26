@@ -23,6 +23,7 @@ public class Character : MonoBehaviour {
 
     Fuel_System fs;
     Vector2 planetCenter;
+    Vector2 planetRadiusVector;
     float planetAngle;
     float planetRadius;
     float planetScale;
@@ -30,6 +31,7 @@ public class Character : MonoBehaviour {
     void Start() {
 
         rb = GetComponent<Rigidbody2D>();
+        fs = GetComponent<Fuel_System>();
 
         if (!rb) {
             rb = gameObject.AddComponent<Rigidbody2D>();
@@ -80,7 +82,7 @@ public class Character : MonoBehaviour {
     void InputManager() {
         dx = Input.GetAxisRaw("Horizontal");
         dy = Input.GetAxisRaw("Vertical");
-        jf = Input.GetButtonDown("Jump");
+        jf = Input.GetButton("Jump");
     }
 
     void PlanetCheck() {
@@ -92,9 +94,10 @@ public class Character : MonoBehaviour {
                 planetCenter = planet.transform.position;
                 planetRadius = planet.GetComponent<CircleCollider2D>().radius;
                 planetScale = planet.transform.localScale.x;
+                planetRadiusVector = new Vector2(transform.position.x - planet.transform.position.x, transform.position.y - planet.transform.position.y);
                 if (!isOnPlanet) {
                     /// planetAngle = Vector2.Angle(planet.transform.position, transform.position);
-                    planetAngle = Mathf.Atan2(transform.position.y - planet.transform.position.y, transform.position.x - planet.transform.position.x);
+                    planetAngle = Mathf.Atan2(planetRadiusVector.y, planetRadiusVector.x);
                     isOnPlanet = true;
                 }
             }
@@ -120,9 +123,8 @@ public class Character : MonoBehaviour {
             fs.UseJetForce();
             rb.AddForce(transform.right * fs.jetForce);
             fs.JetOn = true;
-        }
+        } 
         else { fs.JetOn = false; }
         fs.IdleJetForce();
-
     }
 }

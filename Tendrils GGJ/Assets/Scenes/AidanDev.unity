@@ -588,6 +588,7 @@ MonoBehaviour:
   maxFuel: 100
   jetForce: 14
   fuelslider: {fileID: 1179099774}
+  JetOn: 0
 --- !u!1 &1524246038
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,7 +804,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2912033436136906778, guid: 3c1ffc8085128154bae32719dd8b331c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412332169949033468, guid: 3c1ffc8085128154bae32719dd8b331c,
+        type: 3}
+      propertyPath: m_UseColliderMask
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2912033436136906778, guid: 3c1ffc8085128154bae32719dd8b331c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3c1ffc8085128154bae32719dd8b331c, type: 3}
 --- !u!1 &1949957717
 GameObject:

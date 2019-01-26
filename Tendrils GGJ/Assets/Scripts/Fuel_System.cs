@@ -44,6 +44,7 @@ public class Fuel_System : MonoBehaviour {
         }
 
         // init
+        
         JetOn = false;
         fuelTick = maxFuel / 100.0f;
         refillSpeed = maxFuel / 100.0f;
@@ -64,7 +65,6 @@ public class Fuel_System : MonoBehaviour {
     public void UseJetForce() {
         delay = maxDelay;
         fuel -= fuelTick;
-        JetOn = true;
     }
 
     public void IdleJetForce() {
