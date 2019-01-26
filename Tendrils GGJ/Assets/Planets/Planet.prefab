@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 2860687299816479144}
   - component: {fileID: 2860687299816479147}
   m_Layer: 8
-  m_Name: Planet_01
+  m_Name: Planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +165,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.125
 --- !u!50 &2860687299816479147
 Rigidbody2D:
   serializedVersion: 4
