@@ -23,8 +23,8 @@ public class Map_Gen : MonoBehaviour
     {
         for (int i = 0; i < 10; i++) {
             // Scale, Position
-            int x = Random.Range(-100, 100);
-            int y = Random.Range(-100, 100);
+            int x = Random.Range(-1000, 1000);
+            int y = Random.Range(-1000, 1000);
             Vector3 position = new Vector3(x, y, 0);
             int scale = Random.Range(6, 24);
             // Grav strength
