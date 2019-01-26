@@ -132,10 +132,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JetOn: 0
   delay: 0
-  isRunning: 0
+  maxDelay: 0
   fuel: 0
   maxFuel: 0
   fuelslider: {fileID: 659301898}
+  jetForce: 0
 --- !u!114 &128117359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,9 +337,9 @@ RectTransform:
   m_Father: {fileID: 675082205}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -443.5, y: 67.7}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -60}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &675082204
@@ -376,7 +377,7 @@ RectTransform:
   - {fileID: 1140456057}
   - {fileID: 659301899}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -741,7 +742,7 @@ PrefabInstance:
     - target: {fileID: 9068466969974617206, guid: 80c8f3822a15105409dabc825d25eba9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9068466969974617206, guid: 80c8f3822a15105409dabc825d25eba9,
         type: 3}
