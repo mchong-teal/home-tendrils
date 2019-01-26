@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Money_System : MonoBehaviour
 {
-    public float money_01;
+    public float money_01;   //money variable
     public float money_02;
-    public Text moneyText_01;
+    public Text moneyText_01;   //text for ui
     public Text moneyText_02;
 
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class Money_System : MonoBehaviour
         moneyText_01.text = "P2 doubloons: " + money_02;
     }
 
-    public void gainMoney_01(float GainM)
+    public void gainMoney_01(float GainM)  // seperated for each player
     {
         money_01 = money_01 + GainM;
         money_01 = (Mathf.Round(money_01 * 100)) / 100.0f;

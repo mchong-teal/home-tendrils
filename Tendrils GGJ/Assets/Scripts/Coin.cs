@@ -6,10 +6,10 @@ public class Coin : MonoBehaviour
 {
     GameObject player1;
     GameObject player2;
-    public float Value;
+    public float Value; // how much the player gets if they hit the coin
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "player_01")
+        if (other.gameObject.tag == "player_01")  //seperated so the player who hits the coin gets it
         {
             Debug.Log("coin1");
             player1 = other.gameObject;
