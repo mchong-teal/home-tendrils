@@ -73,4 +73,16 @@ public class Fuel_System : MonoBehaviour {
             if (delay <= 0.0f) { fuel += fuelTick * refillSpeed; }
         }
     }
+    public void upgradeMaxFuel()
+    {
+        maxFuel = maxFuel + 10.0f;
+    }
+    public void upgradeMaxDelay()
+    {
+        maxDelay = maxDelay * 0.90f;
+    }
+    public void upgradeJetForce()
+    {
+        jetForce = jetForce + 2.0f;
+    }
 }
