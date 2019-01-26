@@ -16,5 +16,6 @@ public class NewBehaviourScript : Editor {
         Character ch = (Character)target;
         Handles.color = Color.white;
         Handles.DrawWireArc(ch.transform.position, Vector3.forward, Vector3.up, 360, ch.groundCheckRadius);
+        Handles.DrawWireArc(ch.transform.position, Vector3.forward, Vector3.up, 360, ch.planetCheckRadius);
     }
 }
