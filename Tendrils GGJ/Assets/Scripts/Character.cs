@@ -9,6 +9,7 @@ public class Character : MonoBehaviour {
     // public variables
     public float spaceSpeed;
     public float planetSpeed;
+    [Range(0, 10)]
     public float groundCheckRadius;
     [Range(50, 250)]
     public float planetCheckRadius;
@@ -21,6 +22,7 @@ public class Character : MonoBehaviour {
     float dx;
     float dy;
     bool jf;
+    bool jump;
     bool isGrounded;
     bool isOnPlanet;
     Fuel_System fs;
@@ -30,8 +32,6 @@ public class Character : MonoBehaviour {
     float planetRadius;
     float planetRotation;
     float planetScale;
-    //List<string> planetNames;
-    //List<GameObject> directionArrows;
 
     void Start() {
 
@@ -71,8 +71,6 @@ public class Character : MonoBehaviour {
         }
 
         isGrounded = false;
-        //planetNames = new List<string>();
-        //directionArrows = new List<GameObject>();
     }
 	
 	
@@ -88,21 +86,22 @@ public class Character : MonoBehaviour {
         PlanetCheck();
         if (isGrounded) { PlanetMoveManager(); }
         else { SpaceMoveManager(); }
-        JetManager();
     }
 
     void InputManager() {
         dx = Input.GetAxisRaw("Horizontal");
         dy = Input.GetAxisRaw("Vertical");
         jf = Input.GetButton("Fire1");
+        jump = Input.GetButtonDown("Jump");
     }
 
     void GroundCheck() {
 
         if (groundCheck) {
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
+            Vector2 size = new Vector2(groundCheckRadius / 2.5f, groundCheckRadius);
+            isGrounded = Physics2D.OverlapCapsule(groundCheck.position, size, CapsuleDirection2D.Vertical, 0.0f, isGroundLayer);
             if (isGrounded) {
-                Collider2D planet = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
+                Collider2D planet = Physics2D.OverlapCapsule(groundCheck.position, size, CapsuleDirection2D.Vertical, 0.0f, isGroundLayer);
                 planetCenter = planet.transform.position;
                 planetRadius = planet.GetComponent<CircleCollider2D>().radius;
                 planetScale = planet.transform.localScale.x;
@@ -142,12 +141,12 @@ public class Character : MonoBehaviour {
     }
 
 
-
     void PlanetMoveManager() {
         rb.velocity = Vector2.zero;
         planetAngle -= (dx * planetSpeed) + planetRotation;
         Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * ((planetRadius * planetScale) + 1.2f);
         transform.position = planetCenter + offset;
+        JetManager();
     }
 
     void SpaceMoveManager() {
@@ -155,15 +154,24 @@ public class Character : MonoBehaviour {
         rb.AddForce(spaceMovement * spaceSpeed);
         planetAngle = 0;
         isOnPlanet = false;
+        JetManager();
     }
 
     void JetManager() {
-        if (jf) {
+        if (jf && !isGrounded) {
             Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
             fs.UseJetForce();
-            rb.AddForce(spaceMovement * fs.jetForce);
+            rb.AddForce(spaceMovement * fs.jetForce, ForceMode2D.Force);
             fs.JetOn = true;
-        } 
+        }
+        else if (jump && isGrounded) {
+            ///Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
+            Vector2 dirVec = new Vector2(transform.position.x - planetCenter.x, transform.position.y - planetCenter.y).normalized;
+            Vector3 spaceMovement = new Vector3(dirVec.x, dirVec.y, 0.0f);
+            fs.UseJetForce();
+            rb.AddForce(spaceMovement * fs.jetForce * 2, ForceMode2D.Impulse);
+            fs.JetOn = true;
+        }
         else { fs.JetOn = false; }
         fs.IdleJetForce();
     }
