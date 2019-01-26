@@ -7,7 +7,7 @@ public class Planet: MonoBehaviour
     // Refs to Unity components
     PointEffector2D gravityEffector;
 
-    public int rotation;
+    public float rotation;
     // Creates a Planet
     public void InitPlanet(Vector3 position, int sizeRatio, int gravStrength, float rotation)
     {
