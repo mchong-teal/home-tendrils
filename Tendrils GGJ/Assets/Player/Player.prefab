@@ -41,9 +41,9 @@ GameObject:
   - component: {fileID: 9068466969974617206}
   - component: {fileID: 9068466969974617193}
   - component: {fileID: 9068466969974617195}
-  - component: {fileID: 9068466969974617192}
   - component: {fileID: 9068466969974617194}
   - component: {fileID: 1382933904}
+  - component: {fileID: 5971103248091778550}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9068466969974617207}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.18, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
   - {fileID: 9068466969699316183}
@@ -103,12 +103,12 @@ SpriteRenderer:
   m_SortingLayerID: -543059189
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 67f987e1acbec244ca6225eb389bcdd8, type: 3}
-  m_Color: {r: 1, g: 0.08445278, b: 0, a: 1}
+  m_Sprite: {fileID: 21300014, guid: 5b1e43931403b4f4fa687a7c047cd079, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 0.33, y: 0.67}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -135,22 +135,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &9068466969974617192
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9068466969974617207}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.125
 --- !u!114 &9068466969974617194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,8 +149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceSpeed: 0
   planetSpeed: 0
-  groundCheckRadius: 1.25
-  planetCheckRadius: 77
+  groundCheckRadius: 3.43
+  planetCheckRadius: 250
   groundCheck: {fileID: 9068466969699316183}
   ArrowPrefab: {fileID: 5535807049625192390, guid: 3d6c7c2b611e7cb4daa7899851969abe,
     type: 3}
@@ -192,3 +176,19 @@ MonoBehaviour:
   jetForce: 14
   fuelslider: {fileID: 0}
   JetOn: 0
+--- !u!70 &5971103248091778550
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9068466969974617207}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0019441486, y: 0.0413949}
+  m_Size: {x: 0.18033072, y: 0.59122676}
+  m_Direction: 0

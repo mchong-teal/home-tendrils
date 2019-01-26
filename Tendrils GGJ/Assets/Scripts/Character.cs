@@ -10,7 +10,7 @@ public class Character : MonoBehaviour {
     public float spaceSpeed;
     public float planetSpeed;
     public float groundCheckRadius;
-    [Range(50, 100)]
+    [Range(50, 250)]
     public float planetCheckRadius;
     public Transform groundCheck;
     public GameObject ArrowPrefab;
@@ -28,9 +28,10 @@ public class Character : MonoBehaviour {
     Vector2 planetRadiusVector;
     float planetAngle;
     float planetRadius;
+    float planetRotation;
     float planetScale;
-    List<string> planetNames;
-    List<GameObject> directionArrows;
+    //List<string> planetNames;
+    //List<GameObject> directionArrows;
 
     void Start() {
 
@@ -70,8 +71,8 @@ public class Character : MonoBehaviour {
         }
 
         isGrounded = false;
-        planetNames = new List<string>();
-        directionArrows = new List<GameObject>();
+        //planetNames = new List<string>();
+        //directionArrows = new List<GameObject>();
     }
 	
 	
@@ -93,7 +94,7 @@ public class Character : MonoBehaviour {
     void InputManager() {
         dx = Input.GetAxisRaw("Horizontal");
         dy = Input.GetAxisRaw("Vertical");
-        jf = Input.GetButton("Jump");
+        jf = Input.GetButton("Fire1");
     }
 
     void GroundCheck() {
@@ -106,6 +107,7 @@ public class Character : MonoBehaviour {
                 planetRadius = planet.GetComponent<CircleCollider2D>().radius;
                 planetScale = planet.transform.localScale.x;
                 planetRadiusVector = new Vector2(transform.position.x - planet.transform.position.x, transform.position.y - planet.transform.position.y);
+                planetRotation = planet.GetComponent<Planet>().rotation;
                 if (!isOnPlanet) {
                     planetAngle = Mathf.Atan2(planetRadiusVector.y, planetRadiusVector.x);
                     isOnPlanet = true;
@@ -118,37 +120,32 @@ public class Character : MonoBehaviour {
 
         Collider2D[] planetcheck = Physics2D.OverlapCircleAll(transform.position, planetCheckRadius, isGroundLayer);
         for (int i = 0; i < planetcheck.Length; i++) {
-            //if (!planetNames.Contains(planetcheck[i].name)) {
-            //    planetNames.Add(planetcheck[i].name);
-            //    float x, y;
-            //    Vector2 directionvector = planetcheck[i].transform.position - transform.position;
-            //    Vector2 unitvector = directionvector.normalized;
-            //    x = (unitvector.x * Camera.main.orthographicSize / 2) + transform.position.x;
-            //    y = (unitvector.y * Camera.main.orthographicSize / 2) + transform.position.y;
-            //    //directionArrows.Add(Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), transform.rotation));
-            //    GameObject arrow;
-            //    arrow = Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), transform.rotation);
-            //    Destroy(arrow, 10);
-            //}
-
-            float x, y;
-            Vector2 directionvector = planetcheck[i].transform.position - transform.position;
-            Vector2 unitvector = directionvector.normalized;
-            x = (unitvector.x * Camera.main.orthographicSize / 1.25f) + transform.position.x;
-            y = (unitvector.y * Camera.main.orthographicSize / 1.25f) + transform.position.y;
-            float angle_ = Mathf.Atan2(unitvector.y, unitvector.x) * Mathf.Rad2Deg;
-            Debug.Log(angle_);
-            //directionArrows.Add(Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), transform.rotation));
-            GameObject arrow;
-            arrow = Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), new Quaternion(0.0f, 0.0f, angle_ + 90.0f, 0.0f));
-            Destroy(arrow, 0.02f);
+            float xCam = Camera.main.WorldToViewportPoint(planetcheck[i].transform.position).x;
+            float yCam = Camera.main.WorldToViewportPoint(planetcheck[i].transform.position).y;
+            bool withinCamera = xCam > 0 && xCam < 1 && yCam > 0 && yCam < 1;
+            if (!withinCamera) {
+                float x, y;
+                Vector2 directionvector = planetcheck[i].transform.position - transform.position;
+                float mag = Mathf.Sqrt(Mathf.Pow(directionvector.x, 2) + Mathf.Pow(directionvector.y, 2));
+                Vector2 unitvector = directionvector.normalized;
+                x = (unitvector.x * Camera.main.orthographicSize / 1.25f) + transform.position.x;
+                y = (unitvector.y * Camera.main.orthographicSize / 1.25f) + transform.position.y;
+                float angle_ = Mathf.Atan2(unitvector.y, unitvector.x) * Mathf.Rad2Deg;
+                Quaternion rot = Quaternion.Euler(new Vector3(0.0f, 0.0f, angle_ + 90.0f));
+                GameObject arrow;
+                arrow = Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), rot);
+                float reduceSize = 85.0f;
+                arrow.transform.localScale = new Vector3(arrow.transform.localScale.x / (mag / reduceSize), arrow.transform.localScale.y / (mag / reduceSize), arrow.transform.localScale.z);
+                Destroy(arrow, 0.02f);
+            }
         }
     }
 
 
+
     void PlanetMoveManager() {
         rb.velocity = Vector2.zero;
-        planetAngle -= dx * planetSpeed;
+        planetAngle -= (dx * planetSpeed);
         Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * ((planetRadius * planetScale) + 1.2f);
         transform.position = planetCenter + offset;
     }
