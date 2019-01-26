@@ -9,14 +9,19 @@ public class Money_System : MonoBehaviour
     public float money_02;
     public Text moneyText_01;   //text for ui
     public Text moneyText_02;
-
+    
+    public int[] Relics = new int[3];
     // Start is called before the first frame update
     void Start()
     {
+        
         money_01 = 0.0f;
         moneyText_01.text = "P1 doubloons: " + money_01;
         money_02 = 0.0f;
-        moneyText_01.text = "P2 doubloons: " + money_02;
+        moneyText_02.text = "P2 doubloons: " + money_02;
+        Relics[0] = 1; //neutral
+        Relics[1] = 1;//good
+        Relics[2] = 1;//bad
     }
 
     public void gainMoney_01(float GainM)  // seperated for each player
@@ -29,7 +34,7 @@ public class Money_System : MonoBehaviour
     {
         money_02 = money_02 + GainM;
         money_02 = (Mathf.Round(money_02 * 100)) / 100.0f;
-        moneyText_02.text = "P1 doubloons: " + money_02;
+        moneyText_02.text = "P2 doubloons: " + money_02;
     }
     public void loseMoney_01(float LoseM)
     {
@@ -41,7 +46,7 @@ public class Money_System : MonoBehaviour
     {
         money_02 = money_02 + LoseM;
         money_02 = (Mathf.Round(money_02 * 100)) / 100.0f;
-        moneyText_02.text = "P1 doubloons: " + money_02;
+        moneyText_02.text = "P2 doubloons: " + money_02;
     }
 
 }
