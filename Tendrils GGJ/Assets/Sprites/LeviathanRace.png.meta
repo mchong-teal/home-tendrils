@@ -1,7 +1,23 @@
 fileFormatVersion: 2
 guid: 5b1e43931403b4f4fa687a7c047cd079
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: LeviathanRace_0
+    21300002: LeviathanRace_1
+    21300004: LeviathanRace_2
+    21300006: LeviathanRace_3
+    21300008: LeviathanRace_4
+    21300010: LeviathanRace_5
+    21300012: LeviathanRace_6
+    21300014: LeviathanRace_7
+    21300016: LeviathanRace_8
+    21300018: LeviathanRace_9
+    21300020: LeviathanRace_10
+    21300022: LeviathanRace_11
+    21300024: LeviathanRace_12
+    21300026: LeviathanRace_13
+    21300028: LeviathanRace_14
+    21300030: LeviathanRace_15
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -31,7 +47,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -40,7 +56,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,13 +85,355 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: LeviathanRace_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 166
+        width: 31
+        height: 67
+      alignment: 9
+      pivot: {x: 0.36750627, y: 0.32901752}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00eb8bb3f89f40c4682ef9d389bdcfca
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 166
+        width: 31
+        height: 67
+      alignment: 9
+      pivot: {x: 0.4454438, y: 0.47475785}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f347e957c2669b04d81f696b3e7287fd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_2
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 166
+        width: 33
+        height: 67
+      alignment: 9
+      pivot: {x: 0.44875035, y: 0.48557633}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22671a7ea0e138c41a79f44c29746111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_3
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 166
+        width: 33
+        height: 67
+      alignment: 9
+      pivot: {x: 0.4194648, y: 0.47836396}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03cdb6847795f474faa3ab5988876a80
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_4
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 161
+        width: 33
+        height: 67
+      alignment: 9
+      pivot: {x: 0.33160818, y: 0.34854558}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1abe404e0e34aa8489a5ef2e738573ff
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_5
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 166
+        width: 33
+        height: 67
+      alignment: 9
+      pivot: {x: 0.4434953, y: 0.47216955}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44acfe60b06c3e74891eb84703569072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_6
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 166
+        width: 33
+        height: 67
+      alignment: 9
+      pivot: {x: 0.49192718, y: 0.4880724}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77f54862780b745419131d618af6691b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_7
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 83
+        width: 33
+        height: 67
+      alignment: 9
+      pivot: {x: 0.48217312, y: 0.39902577}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91e7a49833b96d7418fdc0bca2fef14f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_8
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 83
+        width: 33
+        height: 67
+      alignment: 9
+      pivot: {x: 0.43500957, y: 0.46798992}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d361069b0d54424faff07367de5acaa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_9
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 81
+        width: 33
+        height: 67
+      alignment: 9
+      pivot: {x: 0.34107858, y: 0.28926042}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5258327c9506b86448c0578bbe8d52f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 33
+        height: 67
+      alignment: 9
+      pivot: {x: 0.3881518, y: 0.37980515}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6569fee4813fab4eb979a58a707c9f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_11
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 0
+        width: 33
+        height: 67
+      alignment: 9
+      pivot: {x: 0.3983198, y: 0.3898214}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f3fe618caffb5943994fbc04472eda4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_12
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 0
+        width: 33
+        height: 67
+      alignment: 9
+      pivot: {x: 0.42882377, y: 0.3948294}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 634990d3a2ad7954f9a4e33bddb39d1c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_13
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 0
+        width: 33
+        height: 67
+      alignment: 9
+      pivot: {x: 0.44915956, y: 0.38481328}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31346c5b5a891f04fa00c7ee29267104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_14
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 0
+        width: 33
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a96f8b9589cac7468accd7082e22025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LeviathanRace_15
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 0
+        width: 33
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f5e2a37e6bf03a469fcf2ef2a2ea932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: dc5837183faaec245bb200613a53b5d7
+    spriteID: 1ea96168ff6d81046811821a5e0f351c
     vertices: []
     indices: 
     edges: []
