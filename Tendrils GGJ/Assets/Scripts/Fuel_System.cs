@@ -14,9 +14,9 @@ public class Fuel_System : MonoBehaviour {
     public float maxFuel;
     public float jetForce;
     public Slider fuelslider;
+    public bool JetOn;
 
     // private
-    bool JetOn;
     float fuelTick;
     float refillSpeed;
     Rigidbody2D rb;
@@ -39,7 +39,7 @@ public class Fuel_System : MonoBehaviour {
         }
 
         if (jetForce <= 0 || jetForce >= 15) {
-            jetForce = 2.0f;
+            jetForce = 10.0f;
             Debug.LogWarning("Jet Force not set properly in " + name + ". Defaulting to: " + jetForce);
         }
 
@@ -57,22 +57,20 @@ public class Fuel_System : MonoBehaviour {
     void Update() {
 
         fuelslider.value = fuel;
-      
-        if (JetOn == false) { //recharge for fuel
-            delay -= Time.deltaTime;
-            if (delay <= 0.0f) { fuel += fuelTick * refillSpeed; }             
-        }
-
         if (fuel > maxFuel) { fuel = maxFuel; }
         else if (fuel < 0.0f) { fuel = 0.0f; }
+    }
 
-        if (Input.GetButton("Jump") & fuel > 0.0f ){
-            
-            delay = maxDelay;
-            fuel -= fuelTick;
-            rb.AddForce(transform.right * jetForce);
-            JetOn = true;
+    public void UseJetForce() {
+        delay = maxDelay;
+        fuel -= fuelTick;
+        JetOn = true;
+    }
+
+    public void IdleJetForce() {
+        if (JetOn == false) { //recharge for fuel
+            delay -= Time.deltaTime;
+            if (delay <= 0.0f) { fuel += fuelTick * refillSpeed; }
         }
-        else { JetOn = false; }
     }
 }

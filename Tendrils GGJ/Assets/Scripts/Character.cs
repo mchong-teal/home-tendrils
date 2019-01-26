@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Fuel_System))]
 public class Character : MonoBehaviour {
 
     // public variables
@@ -16,9 +17,11 @@ public class Character : MonoBehaviour {
     Rigidbody2D rb;
     float dx;
     float dy;
+    bool jf;
     bool isGrounded;
     bool isOnPlanet;
 
+    Fuel_System fs;
     Vector2 planetCenter;
     float planetAngle;
     float planetRadius;
@@ -56,21 +59,31 @@ public class Character : MonoBehaviour {
             groundCheckRadius = 0.1f;
         }
 
-        isGrounded = false; // Placeholder
+        isGrounded = false; /// Placeholder
     }
 	
 	
     void Update() {
 
-        dx = Input.GetAxisRaw("Horizontal");
-        dy = Input.GetAxisRaw("Vertical");
-
-        
-
+        InputManager();
         MoveManager();
     }
 
     void MoveManager() {
+
+        PlanetCheck();
+        if (isGrounded) { PlanetMoveManager(); }
+        else { SpaceMoveManager(); }
+        JetManager();
+    }
+
+    void InputManager() {
+        dx = Input.GetAxisRaw("Horizontal");
+        dy = Input.GetAxisRaw("Vertical");
+        jf = Input.GetButtonDown("Jump");
+    }
+
+    void PlanetCheck() {
 
         if (groundCheck) {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, isGroundLayer);
@@ -80,24 +93,11 @@ public class Character : MonoBehaviour {
                 planetRadius = planet.GetComponent<CircleCollider2D>().radius;
                 planetScale = planet.transform.localScale.x;
                 if (!isOnPlanet) {
-                    //planetAngle = Vector2.Angle(planet.transform.position, transform.position);
+                    /// planetAngle = Vector2.Angle(planet.transform.position, transform.position);
                     planetAngle = Mathf.Atan2(transform.position.y - planet.transform.position.y, transform.position.x - planet.transform.position.x);
                     isOnPlanet = true;
                 }
             }
-        }
-
-        // Angular velocity
-        /// Pressing left on the player moves the player to the left relative to the players upward orientation
-        /// 
-
-        
-        if (isGrounded) {
-            // TODO: Move to planetMovement Manager
-            PlanetMoveManager();
-        }
-        else {
-            SpaceMoveManager();
         }
     }
 
@@ -113,5 +113,16 @@ public class Character : MonoBehaviour {
         rb.AddForce(spaceMovement);
         planetAngle = 0;
         isOnPlanet = false;
+    }
+
+    void JetManager() {
+        if (jf) {
+            fs.UseJetForce();
+            rb.AddForce(transform.right * fs.jetForce);
+            fs.JetOn = true;
+        }
+        else { fs.JetOn = false; }
+        fs.IdleJetForce();
+
     }
 }
