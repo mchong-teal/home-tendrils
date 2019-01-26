@@ -210,13 +210,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceaa13626f4a9d647b032d3208bb511d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JetOn: 0
   delay: 0
   maxDelay: 0
   fuel: 0
   maxFuel: 0
-  fuelslider: {fileID: 659301898}
   jetForce: 0
+  fuelslider: {fileID: 659301898}
 --- !u!114 &128117359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +232,7 @@ MonoBehaviour:
   money_02: 0
   moneyText_01: {fileID: 1804634379}
   moneyText_02: {fileID: 1140456055}
+  Relics: 000000000000000000000000
 --- !u!1 &606166806
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +540,7 @@ MonoBehaviour:
   money_02: 0
   moneyText_01: {fileID: 1804634379}
   moneyText_02: {fileID: 1140456055}
+  Relics: 
 --- !u!1 &850500591
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,10 +754,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -1246,10 +1247,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -1276,6 +1277,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1977240534}
   - component: {fileID: 1977240533}
+  - component: {fileID: 1977240536}
+  - component: {fileID: 1977240535}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -1339,12 +1342,46 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977240532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.91, y: 1.65, z: 0}
+  m_LocalPosition: {x: 7.19, y: 0.74, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1977240535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977240532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d839890e848b6c408d8816282e1e828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTextBox: {fileID: 0}
+  questGiven: 0
+  questDone: 0
+  m_Text: {fileID: 0}
+  mytextpro: {fileID: 1435312506}
+  m_TextContainer: {fileID: 0}
+--- !u!58 &1977240536
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977240532}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.125
 --- !u!1001 &2860687299908552792
 PrefabInstance:
   m_ObjectHideFlags: 0
