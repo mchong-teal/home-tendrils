@@ -44,7 +44,7 @@ public class Character : MonoBehaviour {
 
         // If was not changed in inspector
         if (spaceSpeed <= 0 || spaceSpeed > 5.0f) {
-            spaceSpeed = 5.0f;
+            spaceSpeed = 2.0f;
             Debug.LogWarning("Speed not set on: " + name + ". Defaulting to " + spaceSpeed);
         }
 
@@ -61,7 +61,7 @@ public class Character : MonoBehaviour {
             groundCheckRadius = 0.1f;
         }
 
-        isGrounded = false; /// Placeholder
+        isGrounded = false;
     }
 	
 	
@@ -96,7 +96,6 @@ public class Character : MonoBehaviour {
                 planetScale = planet.transform.localScale.x;
                 planetRadiusVector = new Vector2(transform.position.x - planet.transform.position.x, transform.position.y - planet.transform.position.y);
                 if (!isOnPlanet) {
-                    /// planetAngle = Vector2.Angle(planet.transform.position, transform.position);
                     planetAngle = Mathf.Atan2(planetRadiusVector.y, planetRadiusVector.x);
                     isOnPlanet = true;
                 }
@@ -112,16 +111,17 @@ public class Character : MonoBehaviour {
     }
 
     void SpaceMoveManager() {
-        Vector3 spaceMovement = new Vector3(dx * spaceSpeed, dy * spaceSpeed, 0.0f);
-        rb.AddForce(spaceMovement);
+        Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
+        rb.AddForce(spaceMovement * spaceSpeed);
         planetAngle = 0;
         isOnPlanet = false;
     }
 
     void JetManager() {
         if (jf) {
+            Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
             fs.UseJetForce();
-            rb.AddForce(transform.right * fs.jetForce);
+            rb.AddForce(spaceMovement * fs.jetForce);
             fs.JetOn = true;
         } 
         else { fs.JetOn = false; }
