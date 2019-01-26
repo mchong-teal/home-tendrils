@@ -98,17 +98,21 @@ public class Character : MonoBehaviour {
 	
 	void AnimatorManager()
     {
-        if (anim)
-        {
-            if (dx < 0 || dx > 0)
-            {
+        if (anim){
+            if (dx < 0 || dx > 0){
                 anim.SetFloat("Movement", 1.0f);
-            } else if (dy < 0 || dy > 0)
-            {
+            } else if (dy < 0 || dy > 0){
                 anim.SetFloat("Movement", 1.0f);
+            } else {
+                anim.SetFloat("Movement", 0.0f);
+            }
+
+            if (isGrounded)
+            {
+                anim.SetBool("Grounded", true);
             } else
             {
-                anim.SetFloat("Movement", 0.0f);
+                anim.SetBool("Grounded", false);
             }
         }
     }
