@@ -15,6 +15,7 @@ public class Planet: MonoBehaviour
         this.transform.localScale = new Vector3(Constants.PLAYER_SCALE * sizeRatio, Constants.PLAYER_SCALE * sizeRatio, 0);
         this.gravityEffector = GetComponentInChildren<PointEffector2D>();
         this.gravityEffector.forceMagnitude = gravStrength;
+        this.rotation = rotation;
     }
 
 
@@ -26,7 +27,7 @@ public class Planet: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(0, 0, Time.deltaTime * this.rotation);
     }
 
 }
