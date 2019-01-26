@@ -28,9 +28,9 @@ public class Map_Gen : MonoBehaviour
             Vector3 position = new Vector3(x, y, 0);
             int scale = Random.Range(6, 24);
             // Grav strength
-            int grav = Random.Range(-200, -100);
+            int grav = Random.Range(-98, -49);
             // Rotation
-            int rot = Random.Range(-10, 10);
+            int rot = Random.Range(1, 10);
 
             Planet newPlanet = (Planet) Instantiate(planet);
             newPlanet.InitPlanet(position, scale, grav, rot);
