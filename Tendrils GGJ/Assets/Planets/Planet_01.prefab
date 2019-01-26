@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7763054388117447386}
   - component: {fileID: 8406618382955567084}
   - component: {fileID: 8990415436049834147}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Gravity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,12 +60,12 @@ PointEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_ForceMagnitude: -10
+  m_ForceMagnitude: -49
   m_ForceVariation: 0.5
   m_DistanceScale: 1
   m_ForceSource: 0
   m_ForceTarget: 0
-  m_ForceMode: 2
+  m_ForceMode: 1
   m_Drag: 0
   m_AngularDrag: 0
 --- !u!1 &2860687299816479159
