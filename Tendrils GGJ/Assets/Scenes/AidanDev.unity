@@ -178,7 +178,7 @@ PrefabInstance:
     - target: {fileID: 9068466969974617194, guid: 80c8f3822a15105409dabc825d25eba9,
         type: 3}
       propertyPath: planetCheckRadius
-      value: 160
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 9068466969974617206, guid: 80c8f3822a15105409dabc825d25eba9,
         type: 3}
