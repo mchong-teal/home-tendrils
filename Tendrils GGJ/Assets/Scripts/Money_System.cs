@@ -38,13 +38,13 @@ public class Money_System : MonoBehaviour
     }
     public void loseMoney_01(float LoseM)
     {
-        money_01 = money_01 + LoseM;
+        money_01 = money_01 - LoseM;
         money_01 = (Mathf.Round(money_01 * 100)) / 100.0f;
         moneyText_01.text = "P1 doubloons: " + money_01;
     }
     public void loseMoney_02(float LoseM)
     {
-        money_02 = money_02 + LoseM;
+        money_02 = money_02 - LoseM;
         money_02 = (Mathf.Round(money_02 * 100)) / 100.0f;
         moneyText_02.text = "P2 doubloons: " + money_02;
     }
