@@ -112,6 +112,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &331262107 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9068466969699316183, guid: 80c8f3822a15105409dabc825d25eba9,
+    type: 3}
+  m_PrefabInstance: {fileID: 9068466970938697881}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &779241914
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +170,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 40
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -206,15 +212,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet_01
       objectReference: {fileID: 0}
+    - target: {fileID: 2860687299816479159, guid: 3c1ffc8085128154bae32719dd8b331c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2860687299816479146, guid: 3c1ffc8085128154bae32719dd8b331c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.35
+      value: -2.65
       objectReference: {fileID: 0}
     - target: {fileID: 2860687299816479146, guid: 3c1ffc8085128154bae32719dd8b331c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2860687299816479146, guid: 3c1ffc8085128154bae32719dd8b331c,
         type: 3}
@@ -261,7 +272,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2860687299816479146, guid: 3c1ffc8085128154bae32719dd8b331c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2860687299816479146, guid: 3c1ffc8085128154bae32719dd8b331c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 40
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2860687299816479147, guid: 3c1ffc8085128154bae32719dd8b331c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3c1ffc8085128154bae32719dd8b331c, type: 3}
 --- !u!1001 &9068466970938697881
 PrefabInstance:
@@ -278,7 +300,7 @@ PrefabInstance:
     - target: {fileID: 9068466969974617206, guid: 80c8f3822a15105409dabc825d25eba9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.29
       objectReference: {fileID: 0}
     - target: {fileID: 9068466969974617206, guid: 80c8f3822a15105409dabc825d25eba9,
         type: 3}
@@ -328,6 +350,52 @@ PrefabInstance:
     - target: {fileID: 9068466969974617206, guid: 80c8f3822a15105409dabc825d25eba9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9068466969974617206, guid: 80c8f3822a15105409dabc825d25eba9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9068466969974617206, guid: 80c8f3822a15105409dabc825d25eba9,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9068466969974617194, guid: 80c8f3822a15105409dabc825d25eba9,
+        type: 3}
+      propertyPath: groundCheckRadius
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9068466969974617194, guid: 80c8f3822a15105409dabc825d25eba9,
+        type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 331262107}
+    - target: {fileID: 9068466969974617194, guid: 80c8f3822a15105409dabc825d25eba9,
+        type: 3}
+      propertyPath: isGroundLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 9068466969974617193, guid: 80c8f3822a15105409dabc825d25eba9,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 67f987e1acbec244ca6225eb389bcdd8,
+        type: 3}
+    - target: {fileID: 9068466969974617192, guid: 80c8f3822a15105409dabc825d25eba9,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9068466969974617192, guid: 80c8f3822a15105409dabc825d25eba9,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 9068466969974617192, guid: 80c8f3822a15105409dabc825d25eba9,
+        type: 3}
+      propertyPath: m_Offset.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
