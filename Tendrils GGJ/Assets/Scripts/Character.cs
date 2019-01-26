@@ -165,7 +165,9 @@ public class Character : MonoBehaviour {
             fs.JetOn = true;
         }
         else if (jump && isGrounded) {
-            Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
+            ///Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
+            Vector2 dirVec = new Vector2(transform.position.x - planetCenter.x, transform.position.y - planetCenter.y).normalized;
+            Vector3 spaceMovement = new Vector3(dirVec.x, dirVec.y, 0.0f);
             fs.UseJetForce();
             rb.AddForce(spaceMovement * fs.jetForce * 2, ForceMode2D.Impulse);
             fs.JetOn = true;
