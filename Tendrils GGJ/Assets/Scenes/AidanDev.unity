@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431dbb8a86a54324c9196195dc6548a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planet: {fileID: 2860687299816479146, guid: 3c1ffc8085128154bae32719dd8b331c, type: 3}
+  planet: {fileID: 3811896151561460275, guid: 3c1ffc8085128154bae32719dd8b331c, type: 3}
 --- !u!114 &1179099774 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9154755329896523405, guid: 592f8da86a87ab6448bce69c1e501762,

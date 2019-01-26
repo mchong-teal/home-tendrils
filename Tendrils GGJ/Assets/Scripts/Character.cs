@@ -28,6 +28,7 @@ public class Character : MonoBehaviour {
     Vector2 planetRadiusVector;
     float planetAngle;
     float planetRadius;
+    float planetRotation;
     float planetScale;
     //List<string> planetNames;
     //List<GameObject> directionArrows;
@@ -93,7 +94,7 @@ public class Character : MonoBehaviour {
     void InputManager() {
         dx = Input.GetAxisRaw("Horizontal");
         dy = Input.GetAxisRaw("Vertical");
-        jf = Input.GetButton("Jump");
+        jf = Input.GetButton("Fire1");
     }
 
     void GroundCheck() {
@@ -106,6 +107,7 @@ public class Character : MonoBehaviour {
                 planetRadius = planet.GetComponent<CircleCollider2D>().radius;
                 planetScale = planet.transform.localScale.x;
                 planetRadiusVector = new Vector2(transform.position.x - planet.transform.position.x, transform.position.y - planet.transform.position.y);
+                planetRotation = planet.GetComponent<Planet>().rotation;
                 if (!isOnPlanet) {
                     planetAngle = Mathf.Atan2(planetRadiusVector.y, planetRadiusVector.x);
                     isOnPlanet = true;
@@ -132,9 +134,8 @@ public class Character : MonoBehaviour {
                 Quaternion rot = Quaternion.Euler(new Vector3(0.0f, 0.0f, angle_ + 90.0f));
                 GameObject arrow;
                 arrow = Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), rot);
-                float reduceSize = 75.0f;
+                float reduceSize = 85.0f;
                 arrow.transform.localScale = new Vector3(arrow.transform.localScale.x / (mag / reduceSize), arrow.transform.localScale.y / (mag / reduceSize), arrow.transform.localScale.z);
-                Debug.Log(arrow.transform.localScale);
                 Destroy(arrow, 0.02f);
             }
         }
@@ -144,7 +145,7 @@ public class Character : MonoBehaviour {
 
     void PlanetMoveManager() {
         rb.velocity = Vector2.zero;
-        planetAngle -= dx * planetSpeed;
+        planetAngle -= (dx * planetSpeed) + planetRotation;
         Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * ((planetRadius * planetScale) + 1.2f);
         transform.position = planetCenter + offset;
     }
