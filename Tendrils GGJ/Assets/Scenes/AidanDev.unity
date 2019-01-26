@@ -112,6 +112,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &21993330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 21993331}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &21993331
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21993330}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 45.976048, y: -8.488777, z: 111.4625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330743559
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,12 +241,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!4 &331262107 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9068466969699316183, guid: 80c8f3822a15105409dabc825d25eba9,
-    type: 3}
-  m_PrefabInstance: {fileID: 9068466970938697881}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &779241914
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,31 +536,6 @@ RectTransform:
   m_AnchoredPosition: {x: -256, y: 217}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1382933898 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9068466969974617207, guid: 80c8f3822a15105409dabc825d25eba9,
-    type: 3}
-  m_PrefabInstance: {fileID: 9068466970938697881}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1382933904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382933898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceaa13626f4a9d647b032d3208bb511d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 0
-  maxDelay: 2
-  fuel: 100
-  maxFuel: 100
-  jetForce: 14
-  fuelslider: {fileID: 1179099774}
-  JetOn: 0
 --- !u!1 &1524246038
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,6 +751,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2860687299816479144, guid: 3c1ffc8085128154bae32719dd8b331c,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 2912033436136906778, guid: 3c1ffc8085128154bae32719dd8b331c,
         type: 3}
       propertyPath: m_Enabled
@@ -808,68 +812,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 9068466969974617192, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9068466969974617192, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.125
-      objectReference: {fileID: 0}
-    - target: {fileID: 9068466969974617192, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9068466969974617193, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 67f987e1acbec244ca6225eb389bcdd8,
-        type: 3}
-    - target: {fileID: 9068466969974617193, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9068466969974617193, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.08445278
-      objectReference: {fileID: 0}
-    - target: {fileID: 9068466969974617193, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9068466969974617194, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: groundCheckRadius
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 9068466969974617194, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: groundCheck
-      value: 
-      objectReference: {fileID: 331262107}
-    - target: {fileID: 9068466969974617194, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: isGroundLayer.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 9068466969974617194, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: planetCheckRadius
-      value: 77
-      objectReference: {fileID: 0}
-    - target: {fileID: 9068466969974617194, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: ArrowPrefab
-      value: 
-      objectReference: {fileID: 5535807049625192388, guid: 3d6c7c2b611e7cb4daa7899851969abe,
-        type: 3}
     - target: {fileID: 9068466969974617206, guid: 80c8f3822a15105409dabc825d25eba9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -925,20 +867,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9068466969974617206, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 9068466969974617206, guid: 80c8f3822a15105409dabc825d25eba9,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 9068466969974617207, guid: 80c8f3822a15105409dabc825d25eba9,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1382933904, guid: 80c8f3822a15105409dabc825d25eba9, type: 3}
+      propertyPath: fuelslider
+      value: 
+      objectReference: {fileID: 1179099774}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c8f3822a15105409dabc825d25eba9, type: 3}

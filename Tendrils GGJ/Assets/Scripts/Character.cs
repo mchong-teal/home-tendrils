@@ -13,7 +13,7 @@ public class Character : MonoBehaviour {
     [Range(50, 100)]
     public float planetCheckRadius;
     public Transform groundCheck;
-    public Transform ArrowPrefab;
+    public GameObject ArrowPrefab;
     public LayerMask isGroundLayer;
 
     // private variables
@@ -29,7 +29,8 @@ public class Character : MonoBehaviour {
     float planetAngle;
     float planetRadius;
     float planetScale;
-    List<Transform> directionArrows;
+    List<string> planetNames;
+    List<GameObject> directionArrows;
 
     void Start() {
 
@@ -69,7 +70,8 @@ public class Character : MonoBehaviour {
         }
 
         isGrounded = false;
-        directionArrows = new List<Transform>();
+        planetNames = new List<string>();
+        directionArrows = new List<GameObject>();
     }
 	
 	
@@ -116,16 +118,33 @@ public class Character : MonoBehaviour {
 
         Collider2D[] planetcheck = Physics2D.OverlapCircleAll(transform.position, planetCheckRadius, isGroundLayer);
         for (int i = 0; i < planetcheck.Length; i++) {
+            //if (!planetNames.Contains(planetcheck[i].name)) {
+            //    planetNames.Add(planetcheck[i].name);
+            //    float x, y;
+            //    Vector2 directionvector = planetcheck[i].transform.position - transform.position;
+            //    Vector2 unitvector = directionvector.normalized;
+            //    x = (unitvector.x * Camera.main.orthographicSize / 2) + transform.position.x;
+            //    y = (unitvector.y * Camera.main.orthographicSize / 2) + transform.position.y;
+            //    //directionArrows.Add(Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), transform.rotation));
+            //    GameObject arrow;
+            //    arrow = Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), transform.rotation);
+            //    Destroy(arrow, 10);
+            //}
+
             float x, y;
-            Vector2 unitvector = transform.position - planetcheck[i].transform.position;
-            x = unitvector.x;
-            y = transform.position.y - planetcheck[i].transform.position.y;
-            Debug.Log(Camera.main.orthographicSize);
-            x = Mathf.Clamp(x, Camera.main.transform.position.x - Camera.main.orthographicSize / 2, Camera.main.transform.position.x + Camera.main.orthographicSize / 2);
-            y = Mathf.Clamp(y, Camera.main.transform.position.x - Camera.main.orthographicSize / 2, Camera.main.transform.position.y + Camera.main.orthographicSize / 2);
-            directionArrows.Add(Instantiate(ArrowPrefab.transform, new Vector3(x, y, 0.0f), Quaternion.identity));
+            Vector2 directionvector = planetcheck[i].transform.position - transform.position;
+            Vector2 unitvector = directionvector.normalized;
+            x = (unitvector.x * Camera.main.orthographicSize / 1.25f) + transform.position.x;
+            y = (unitvector.y * Camera.main.orthographicSize / 1.25f) + transform.position.y;
+            float angle_ = Mathf.Atan2(unitvector.y, unitvector.x) * Mathf.Rad2Deg;
+            Debug.Log(angle_);
+            //directionArrows.Add(Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), transform.rotation));
+            GameObject arrow;
+            arrow = Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), new Quaternion(0.0f, 0.0f, angle_ + 90.0f, 0.0f));
+            Destroy(arrow, 0.02f);
         }
     }
+
 
     void PlanetMoveManager() {
         rb.velocity = Vector2.zero;

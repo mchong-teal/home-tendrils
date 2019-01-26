@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 9068466969974617195}
   - component: {fileID: 9068466969974617192}
   - component: {fileID: 9068466969974617194}
+  - component: {fileID: 1382933904}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -102,8 +103,8 @@ SpriteRenderer:
   m_SortingLayerID: -543059189
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0.054832935, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 67f987e1acbec244ca6225eb389bcdd8, type: 3}
+  m_Color: {r: 1, g: 0.08445278, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -149,7 +150,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.125
 --- !u!114 &9068466969974617194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +163,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8bf90d05b84814e990467363d35c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  groundCheckRadius: 0
-  groundCheck: {fileID: 0}
+  spaceSpeed: 0
+  planetSpeed: 0
+  groundCheckRadius: 1.25
+  planetCheckRadius: 77
+  groundCheck: {fileID: 9068466969699316183}
+  ArrowPrefab: {fileID: 5535807049625192390, guid: 3d6c7c2b611e7cb4daa7899851969abe,
+    type: 3}
+  isGroundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!114 &1382933904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9068466969974617207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceaa13626f4a9d647b032d3208bb511d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0
+  maxDelay: 2
+  fuel: 100
+  maxFuel: 100
+  jetForce: 14
+  fuelslider: {fileID: 0}
+  JetOn: 0
