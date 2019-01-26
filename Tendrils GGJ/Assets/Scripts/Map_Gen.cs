@@ -5,7 +5,7 @@ using UnityEngine;
 public class Map_Gen : MonoBehaviour
 {
 
-    public Transform planet;
+    public Planet planet;
     // List<PlanetPr> directionArrows;
     // Start is called before the first frame update
     void Start()
@@ -22,18 +22,17 @@ public class Map_Gen : MonoBehaviour
     void GenerateMap() 
     {
         for (int i = 0; i < 10; i++) {
+            // Scale, Position
             int x = Random.Range(-100, 100);
             int y = Random.Range(-100, 100);
             Vector3 position = new Vector3(x, y, 0);
-            this.CreatePlanet(position, 1, 2, 3);
-        }
-    }
+            int scale = Random.Range(6, 24);
+            // Grav strength
+            int grav = Random.Range(-98, -49);
 
-    // Creates a Planet with given params
-    Transform CreatePlanet(Vector3 position, int sizeRatio, int gravStrength, int rotation)
-    {
-        Transform newPlanet = (Transform) Instantiate(planet, position, Quaternion.identity);
-        return newPlanet;
+            Planet newPlanet = (Planet) Instantiate(planet);
+            newPlanet.InitPlanet(position, scale, grav, 3);
+        }
     }
 
 }
