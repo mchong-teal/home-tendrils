@@ -21,13 +21,18 @@ public class Map_Gen : MonoBehaviour
 
     void GenerateMap() 
     {
-        this.CreatePlanet(-20);
+        for (int i = 0; i < 10; i++) {
+            int x = Random.Range(-100, 100);
+            int y = Random.Range(-100, 100);
+            Vector3 position = new Vector3(x, y, 0);
+            this.CreatePlanet(position, 1, 2, 3);
+        }
     }
 
     // Creates a Planet with given params
-    Transform CreatePlanet(int gravity)
+    Transform CreatePlanet(Vector3 position, int sizeRatio, int gravStrength, int rotation)
     {
-        Transform newPlanet = (Transform) Instantiate(planet, new Vector3(-40, -40, 0), Quaternion.identity);
+        Transform newPlanet = (Transform) Instantiate(planet, position, Quaternion.identity);
         return newPlanet;
     }
 
