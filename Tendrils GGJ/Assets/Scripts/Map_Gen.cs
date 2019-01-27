@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Map_Gen : MonoBehaviour
 {
-
     List<Planet> galaxy = new List<Planet>();
     public Planet planet;
     // List<PlanetPr> directionArrows;
@@ -12,6 +11,7 @@ public class Map_Gen : MonoBehaviour
     void Start()
     {
         this.GenerateMap();
+        this.InitPlayers();
     }
 
     // Update is called once per frame
@@ -20,13 +20,34 @@ public class Map_Gen : MonoBehaviour
         
     }
 
+    // Initialize players with ids and home planets
+    // First two planets in csv are home planets
+    void InitPlayers()
+    {
+        Character[] players = this.GetComponentsInChildren<Character>();
+        // FIXME: player ids are based on order returned by GetComponents
+        int playerId = 0;
+        foreach(Character player in players)
+        {
+            player.InitCharacter(playerId, galaxy[playerId]);
+        }
+    }
+
     void GenerateMap() 
     {
+        int planetId = 0;
         LoadMap.LoadPlanets().ForEach( (PlanetParam pp ) => {
             Planet newPlanet = (Planet) Instantiate(planet);
-            newPlanet.InitPlanet(pp);
+            newPlanet.InitPlanet(planetId, pp);
             galaxy.Add(newPlanet);
         });
    }
 
+   Planet GetPlanet(int idx)
+   {
+       if (galaxy[idx].planetIdx != idx) {
+           throw new UnityException("Planet idx broken");
+       }
+       return galaxy[idx];
+   }
 }
