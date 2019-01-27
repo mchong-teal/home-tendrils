@@ -17,26 +17,41 @@ public class AI_Controller : MonoBehaviour {
     Player_Rotation rot;
     Map_Gen map;
     bool trigger;
-
+    int dirCount;
+    public int x;
 
     void Start() {
 
+        dirCount = 0;
+        x = 1;
         trigger = true;
         this.transform.localScale = new Vector2(10.0f, 10.0f);
         this.transform.GetChild(0).position = new Vector2(10000, 10000);
         rot = GetComponent<Player_Rotation>();
         planetAngle = 0.0f;
-        bigWalkNumber = Mathf.PI * 360 * 2;
+        bigWalkNumber = 40;
         map = GameObject.Find("MapGen").GetComponent<Map_Gen>();
     }
 	
 	
     void Update() {
+        
+        if (dirCount > Random.Range(700, 1400)) {
+            x *= -1;
+            dirCount = 0;
+        }
 
-        planetAngle -= (planetRot * bigWalkNumber * walkSpeed) / (Mathf.PI * Mathf.Pow(planetRad, 2));
+        if (planetRot < 0) {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else {
+            this.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        planetAngle -= (((x * walkSpeed) - planetRot) * bigWalkNumber) / (Mathf.PI * Mathf.Pow(planetRad, 2));
         Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * (planetRad + 2.0f);
         this.transform.position = planetPos + offset;
         rot.SetRotation(planetAngle - (Mathf.PI / 2));
+        dirCount++;
     }
 
     public void PlanetPosition(Vector2 planetPos_, float planetRad_, float planetRot_) {
@@ -44,9 +59,6 @@ public class AI_Controller : MonoBehaviour {
         this.planetPos = planetPos_;
         this.planetRad = planetRad_;
         this.planetRot = planetRot_;
-        if (planetRot_ < 0) {
-            this.GetComponent<SpriteRenderer>().flipX = true;
-        }
     }
 
     void OnTriggerEnter2D(Collider2D collision) {

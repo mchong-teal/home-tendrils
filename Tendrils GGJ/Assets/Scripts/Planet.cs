@@ -60,9 +60,14 @@ public class Planet: MonoBehaviour
         circleCollider.radius = s.bounds.size.x/2 - .1f;
 
         // NPCs
+        
         npc = (AI_Controller) Instantiate(npcPrefab, this.transform.position + (Vector3.up * this.transform.localScale.x), Quaternion.identity);
         npc.planetid = idx;
         npc.walkSpeed = Random.Range(1.0f, 1.5f);
+        int rand = Random.Range(0, 1);
+        if (rand == 0) { rand = -1; }
+        npc.PlanetPosition(this.transform.position, this.transform.localScale.x * this.circleCollider.radius, this.rotation);
+        npc.x = rand;
     }
 
 
@@ -77,9 +82,6 @@ public class Planet: MonoBehaviour
     void Update()
     {
         transform.Rotate(0, 0, this.rotation);
-        int rand = Random.Range(0, 1);
-        if (rand == 0) { rand = -1; }
-        npc.PlanetPosition(this.transform.position, this.transform.localScale.x * this.circleCollider.radius, this.rotation * (float)rand);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
