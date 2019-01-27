@@ -30,7 +30,7 @@ public class Planet: MonoBehaviour
     // Refs to Unity components
     public AI_Controller npcPrefab;
     PointEffector2D gravityEffector;
-    CircleCollider2D circleCollider;
+    public CircleCollider2D groundCollider;
     AI_Controller npc;
     CircleCollider2D AtmosphereCollider;
     SpriteRenderer planetSprite;
@@ -44,20 +44,23 @@ public class Planet: MonoBehaviour
     {
         this.planetIdx = idx;
         this.transform.position = new Vector3(param.x, param.y, 0);
-        this.circleCollider = this.GetComponent<CircleCollider2D>();
+        this.groundCollider = this.GetComponent<CircleCollider2D>();
         Vector3 planetSize = new Vector3(10, 10, 0);
         this.transform.localScale = planetSize;
-
-
-        // Gravity
-        this.gravityEffector = GetComponentInChildren<PointEffector2D>();
-        this.gravityEffector.forceMagnitude = param.gravity;
-        this.rotation = param.rotation;
 
         this.planetSprite = this.GetComponent<SpriteRenderer>();
         Sprite s = Resources.Load<Sprite>(param.spriteImage);
         this.planetSprite.sprite = s;
-        circleCollider.radius = s.bounds.size.x/2 - .1f;
+        float planetRadius = s.bounds.size.x/2 - .1f;
+        groundCollider.radius = planetRadius;
+
+        // Gravity
+        this.gravityEffector = GetComponentInChildren<PointEffector2D>();
+        float adjustedGrav = param.gravity*((0.4f + (0.1f * planetRadius))/1);
+        Debug.Log(planetRadius);
+        Debug.Log(adjustedGrav);
+        this.gravityEffector.forceMagnitude = adjustedGrav;
+        this.rotation = param.rotation;
 
         // NPCs
         npc = (AI_Controller) Instantiate(npcPrefab, this.transform.position + (Vector3.up * this.transform.localScale.x), Quaternion.identity);
@@ -79,7 +82,7 @@ public class Planet: MonoBehaviour
         transform.Rotate(0, 0, this.rotation);
         int rand = Random.Range(0, 1);
         if (rand == 0) { rand = -1; }
-        npc.PlanetPosition(this.transform.position, this.transform.localScale.x * this.circleCollider.radius, this.rotation * (float)rand);
+        npc.PlanetPosition(this.transform.position, this.transform.localScale.x * this.groundCollider.radius, this.rotation * (float)rand);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
