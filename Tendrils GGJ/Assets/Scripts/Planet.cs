@@ -45,11 +45,11 @@ public class Planet: MonoBehaviour
 
         // Gravity
         this.gravityEffector = GetComponentInChildren<PointEffector2D>();
-        this.gravityEffector.forceMagnitude = param.gravity*2;
+        this.gravityEffector.forceMagnitude = param.gravity;
         this.rotation = param.rotation;
 
         SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
-        Sprite s = Resources.Load<Sprite>("Planets/Earthlike");
+        Sprite s = Resources.Load<Sprite>(param.spriteImage);
         sr.sprite = s;
         circleCollider.radius = s.bounds.size.x/2 - .1f;
 
