@@ -200,5 +200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659bfcc89d4783246bf163258bea052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcPrefab: {fileID: 6143893841986938, guid: f150c1f7d66a5fa42abc958a1ed93d1e, type: 3}
   rotation: 0
+  planetIdx: 0
+  npcPrefab: {fileID: 6143893841986934, guid: f150c1f7d66a5fa42abc958a1ed93d1e, type: 3}

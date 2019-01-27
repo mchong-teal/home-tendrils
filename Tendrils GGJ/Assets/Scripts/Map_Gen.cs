@@ -86,8 +86,6 @@ public class Map_Gen : MonoBehaviour
 
     // Worst case O(2n) search in number of links in network
     public bool IsPlanetInNetwork(int charIdx, int planetIdx) {
-
-        Planet newPlanet = (Planet) Instantiate(planet);
         foreach (Tether link in this.networks[charIdx]) {
             if (link.DoesConnectPlanet(planetIdx)) {
                 return true;

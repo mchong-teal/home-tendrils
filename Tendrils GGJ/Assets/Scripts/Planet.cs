@@ -28,9 +28,9 @@ public class Planet: MonoBehaviour
     public float rotation;
     public int planetIdx;
     // Refs to Unity components
-    public GameObject npcPrefab;
+    public AI_Controller npcPrefab;
     PointEffector2D gravityEffector;
-    GameObject npc;
+    AI_Controller npc;
 
     // Creates a Planet
     public void InitPlanet(int idx, PlanetParam param)
@@ -45,8 +45,8 @@ public class Planet: MonoBehaviour
         this.rotation = param.rotation;
 
         // NPCs
-        npc = (GameObject)Instantiate(npcPrefab, this.transform.position + (Vector3.up * this.transform.localScale.x), Quaternion.identity);
-        npc.GetComponent<AI_Controller>().planetid = idx;
+        npc = (AI_Controller) Instantiate(npcPrefab, this.transform.position + (Vector3.up * this.transform.localScale.x), Quaternion.identity);
+        npc.planetid = idx;
     }
 
 
@@ -61,7 +61,7 @@ public class Planet: MonoBehaviour
         transform.Rotate(0, 0, this.rotation);
         int rand = Random.Range(0, 1);
         if (rand == 0) { rand = -1; }
-        npc.GetComponent<AI_Controller>().PlanetPosition(this.transform.position, this.transform.localScale.x * this.GetComponent<CircleCollider2D>().radius, this.rotation * (float)rand);
+	npc.PlanetPosition(this.transform.position, this.transform.localScale.x * this.GetComponent<CircleCollider2D>().radius, this.rotation * (float)rand);
     }
 
 }
