@@ -174,7 +174,7 @@ public class Character : MonoBehaviour {
                 es.DisableIcon();
             }
             else {
-                this.displayMessage = "You have no artifact to drop";
+                // this.displayMessage = "You have no artifact to drop";
             }
             this.drop = false;
         }
