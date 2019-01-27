@@ -6,6 +6,7 @@ public class AI_Controller : MonoBehaviour {
 
     // public variables 
     public int planetid;
+    public float walkSpeed;
 
     // private variables
     float planetAngle;
@@ -39,6 +40,7 @@ public class AI_Controller : MonoBehaviour {
     }
 
     public void PlanetPosition(Vector2 planetPos_, float planetRad_, float planetRot_) {
+
         this.planetPos = planetPos_;
         this.planetRad = planetRad_;
         this.planetRot = planetRot_;
