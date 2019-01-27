@@ -51,11 +51,9 @@ public class Character : MonoBehaviour {
 
     // Capture stuff
     public int playerId;
-    int homePlanet;
     public int inventoryPlanet; // The planet the player last got an item from
     Map_Gen galaxy;
     bool tryPickup;
-    List<Tether> network; // Going with an edge list representation I guess..
     bool animatePickup;
     string displayMessage;
 
@@ -63,7 +61,6 @@ public class Character : MonoBehaviour {
     public void InitCharacter(int id, int home)
     {
         this.playerId = id;
-        this.homePlanet = home;
         Planet hp = this.GetPlanet(home);
         float startX = hp.transform.position.x;
         float startY = hp.transform.position.y;
@@ -73,8 +70,7 @@ public class Character : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         fs = GetComponent<Fuel_System>();
         rot = GetComponent<Player_Rotation>();
-        galaxy = GetComponent<Map_Gen>();
-        network = new List<Tether>();
+        galaxy = GetComponentInParent<Map_Gen>();
 
         this.isOnPlanet = -1;
         this.inventoryPlanet = -1;
@@ -284,26 +280,13 @@ public class Character : MonoBehaviour {
             this.displayMessage = "You already have an item, press <key> to toss";
             return;
         }
-        if (!this.IsPlanetInNetwork(this.isOnPlanet)) {
+        if (!this.galaxy.IsPlanetInNetwork(this.playerId, this.isOnPlanet)) {
             this.displayMessage = "You don't know anyone on this planet";
             return;
         }
         Debug.Log("pickup");
         animatePickup = true; // TODO Animate;
         this.inventoryPlanet = isOnPlanet;
-    }
-
-    // Worst case O(2n) search in number of links in network
-    bool IsPlanetInNetwork(int idx) {
-        if (this.homePlanet == idx) {
-            return true;
-        }
-        foreach (Tether link in this.network) {
-            if (link.DoesConnectPlanet(idx)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     Planet GetPlanet(int idx) {
