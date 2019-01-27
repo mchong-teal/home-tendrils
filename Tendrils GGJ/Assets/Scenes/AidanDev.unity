@@ -124,6 +124,30 @@ MonoBehaviour:
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &328055570 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2131940101576438501, guid: 592f8da86a87ab6448bce69c1e501762,
+    type: 3}
+  m_PrefabInstance: {fileID: 9154755328793838835}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &373958853 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2131940102244843929, guid: 592f8da86a87ab6448bce69c1e501762,
+    type: 3}
+  m_PrefabInstance: {fileID: 9154755328793838835}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1977453606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -208,6 +232,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2424fb29d83f10e4e8ee6e693e90c3ff, type: 3}
+--- !u!1 &2103698690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1989018060391241420, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 1977453606}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2103698699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103698690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69e520f252e8e254bbfa200478f75a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: []
+  money_01: {fileID: 373958853}
+  money_02: {fileID: 328055570}
+  moneyText: []
+  Relics: 000000000000000000000000
 --- !u!1001 &9154755328793838835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -459,6 +506,11 @@ PrefabInstance:
         type: 3}
       propertyPath: player1
       value: 
+      objectReference: {fileID: 2103698690}
+    - target: {fileID: 2131940103358687091, guid: 592f8da86a87ab6448bce69c1e501762,
+        type: 3}
+      propertyPath: upgradeSystemActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2131940101576438501, guid: 592f8da86a87ab6448bce69c1e501762,
         type: 3}

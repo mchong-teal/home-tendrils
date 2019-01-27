@@ -11,8 +11,9 @@ public class EventSystem : MonoBehaviour
     public GameObject itemIcon;
     void Start()
     {
-       itemIcon = GameObject.Find("ItemIcon");
-        itemIcon.SetActive(false);
+       if (itemIcon) {
+            itemIcon.SetActive(false);
+       }
     }
 
     // Update is called once per frame

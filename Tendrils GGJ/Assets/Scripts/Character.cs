@@ -32,6 +32,7 @@ public class Character : MonoBehaviour {
     float dy;
     bool jf;
     bool jump;
+    float spaceAngle;
 
     // Checks
     public bool isGrounded;
@@ -116,6 +117,7 @@ public class Character : MonoBehaviour {
         }
 
         isGrounded = false;
+        spaceAngle = 0.0f;
     }
 	
 	void AnimatorManager()
@@ -229,21 +231,20 @@ public class Character : MonoBehaviour {
         transform.position = planetCenter + offset;
         JetManager();
         rot.SetRotation(planetAngle - (Mathf.PI / 2));
+        spaceAngle = planetAngle;
     }
 
     void SpaceMoveManager() {
-        Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
-        rb.AddForce(spaceMovement * spaceSpeed);
-        float spaceAngle = Mathf.Atan2(rb.velocity.y, rb.velocity.x);
+        spaceAngle -= dx * Time.deltaTime;
         planetAngle = 0;
         isOnPlanet = -1;
-        JetManager();
         rot.SetRotation(spaceAngle - (Mathf.PI / 2));
+        JetManager();
     }
 
     void JetManager() {
-        if (jf && !isGrounded) {
-            Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
+        if (!isGrounded && dy != 0) {
+            Vector3 spaceMovement = new Vector3(dy * Mathf.Cos(spaceAngle), Mathf.Sin(dy * spaceAngle), 0.0f);
             fs.UseJetForce();
             rb.AddForce(spaceMovement * fs.jetForce, ForceMode2D.Force);
             fs.JetOn = true;

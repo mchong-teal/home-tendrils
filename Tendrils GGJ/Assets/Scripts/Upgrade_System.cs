@@ -21,22 +21,28 @@ public class Upgrade_System : MonoBehaviour
     public TextMeshProUGUI delayCost_01;
     public float p2U_delayCost;
     public TextMeshProUGUI delayCost_02;
+
+    public float[,] costs;
+    public TextMeshProUGUI[,] costText;
+
     // Start is called before the first frame update
     void Start()
     {
-        upgradeSystemActive = false;
-        p1U_fuelCost = 100.0f;
-        fuelCost_01.text = "FuelCost " + p1U_fuelCost;
-     p2U_fuelCost = 100.0f;
-        fuelCost_02.text = "FuelCost " + p2U_fuelCost;
-        p1U_forceCost = 100.0f;
-        forceCost_01.text = "ThrustersCost " + p1U_forceCost;
-        p2U_forceCost = 100.0f;
-        forceCost_02.text = "ThrustersCost " + p2U_forceCost;
-        p1U_delayCost = 100.0f;
-        delayCost_01.text = "RechargeCost " + p1U_delayCost;
-        p2U_delayCost = 100.0f;
-        delayCost_02.text = "RechargeCost " + p2U_delayCost;
+        costs = new float[2,3];
+        costText = new TextMeshProUGUI[2,3] { {fuelCost_01, forceCost_01, delayCost_01 }, {fuelCost_01, forceCost_02, delayCost_02 } };
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                costs[i,j] = 100.0f;
+            }
+        }
+
+        costText[0,0].text = "FuelCost " + costs[0,0];
+        costText[1,0].text = "FuelCost " + costs[1,0];
+        costText[0,1].text = "ThrustersCost " + costs[0,1];
+        costText[1,1].text = "ThrustersCost " + costs[1,1];
+        costText[0,2].text = "RechargeCost " + costs[0,2];
+        costText[1,2].text = "RechargeCost " + costs[1,2];
+        
     }
 
     // Update is called once per frame
@@ -53,61 +59,54 @@ public class Upgrade_System : MonoBehaviour
                 UpgradeMenu.SetActive(false);
             }
         }
-        if (Input.GetKeyDown(KeyCode.J)&&upgradeSystemActive == true&&player1.GetComponent<Money_System>().money_01>=p1U_fuelCost)
+        if (Input.GetKeyDown(KeyCode.J)&&upgradeSystemActive == true&&player1.GetComponent<Money_System>().money[0]>=costs[0,0])
         {
            
-            player1.GetComponent<Money_System>().loseMoney_01(p1U_fuelCost);
-            p1U_fuelCost = p1U_fuelCost + 100.0f;
+            player1.GetComponent<Money_System>().loseMoney(costs[0,0], 0);
+            costs[0,0] += 100.0f;
             player1.GetComponent<Fuel_System>().upgradeMaxFuel();
-            fuelCost_01.text = "FuelCost " + p1U_fuelCost;
+            costText[0,0].text = "FuelCost " + costs[0,0];
         }
-        if (Input.GetKeyDown(KeyCode.Keypad7) && upgradeSystemActive == true&&player2.GetComponent<Money_System>().money_02>=p2U_fuelCost)
+        if (Input.GetKeyDown(KeyCode.Keypad7) && upgradeSystemActive == true&&player2.GetComponent<Money_System>().money[1]>=costs[1,0])
         {
-            player2.GetComponent<Money_System>().loseMoney_02(p2U_fuelCost);
-            p2U_fuelCost = p2U_fuelCost + 100.0f;
+            player2.GetComponent<Money_System>().loseMoney(costs[1,0], 1);
+            costs[0,1] += 100.0f;
             player2.GetComponent<Fuel_System>().upgradeMaxFuel();
-            fuelCost_02.text = "FuelCost " + p2U_fuelCost;
+            costText[0,1].text = "FuelCost " + costs[0,1];
 
         }
-        if (Input.GetKeyDown(KeyCode.K) && upgradeSystemActive == true && player1.GetComponent<Money_System>().money_01 >= p1U_forceCost)
+        if (Input.GetKeyDown(KeyCode.K) && upgradeSystemActive == true && player1.GetComponent<Money_System>().money[0] >= costs[0,1])
         {
-            player1.GetComponent<Money_System>().loseMoney_01(p1U_forceCost);
-            p1U_forceCost = p1U_forceCost + 100.0f;
+            player1.GetComponent<Money_System>().loseMoney(costs[0,1], 0);
+            costs[0,1] += 100.0f;
             player1.GetComponent<Fuel_System>().upgradeJetForce();
-            forceCost_01.text = "ThrustersCost " + p1U_forceCost;
+            costText[0,1].text = "ThrustersCost " + costs[0,1];
         }
-        if (Input.GetKeyDown(KeyCode.Keypad8) && upgradeSystemActive == true && player2.GetComponent<Money_System>().money_02 >= p2U_forceCost)
+        if (Input.GetKeyDown(KeyCode.Keypad8) && upgradeSystemActive == true && player2.GetComponent<Money_System>().money[1] >= costs[1,1])
         {
-            player2.GetComponent<Money_System>().loseMoney_02(p2U_forceCost);
-            p2U_forceCost = p2U_forceCost + 100.0f;
+            player2.GetComponent<Money_System>().loseMoney(costs[1,1], 1);
+            costs[1,1] += 100.0f;
             player2.GetComponent<Fuel_System>().upgradeJetForce();
-            forceCost_02.text = "ThrustersCost " + p2U_forceCost;
+            costText[1,1].text = "ThrustersCost " + costs[1,1];
 
         }
-        if (Input.GetKeyDown(KeyCode.L) && upgradeSystemActive == true && player1.GetComponent<Money_System>().money_01 >= p1U_delayCost)
+        if (Input.GetKeyDown(KeyCode.L) && upgradeSystemActive == true && player1.GetComponent<Money_System>().money[0] >= costs[0,2])
         {
-            player1.GetComponent<Money_System>().loseMoney_01(p1U_delayCost);
-            p1U_delayCost = p1U_delayCost + 100.0f;
+            player1.GetComponent<Money_System>().loseMoney(costs[0,2], 0);
+            costs[0,2] += 100.0f;
             player1.GetComponent<Fuel_System>().upgradeMaxDelay();
-            delayCost_01.text = "RechargeCost " + p1U_delayCost;
+            costText[0,2].text = "RechargeCost " + costs[0,2];
         }
-        if (Input.GetKeyDown(KeyCode.Keypad9) && upgradeSystemActive == true && player2.GetComponent<Money_System>().money_02 >= p2U_delayCost)
+        if (Input.GetKeyDown(KeyCode.Keypad9) && upgradeSystemActive == true && player2.GetComponent<Money_System>().money[1] >= costs[1,2])
         {
-            player2.GetComponent<Money_System>().loseMoney_02(p2U_delayCost);
-            p2U_delayCost = p2U_delayCost + 100.0f;
+            player2.GetComponent<Money_System>().loseMoney(costs[1,2], 1);
+            costs[1,2] += 100.0f;
             player2.GetComponent<Fuel_System>().upgradeMaxDelay();
-            delayCost_02.text = "RechargeCost " + p2U_delayCost;
+            costText[1,2].text = "RechargeCost " + costs[1,2];
 
         }
-
-        
-
-
-
-
-
-
     }
+
     public void DisplayEventMessage(string text, int playerId)
     {
         AllText.GetComponent<EventSystem>().eventText.text = text; // put a line like this whenever you want to change the text dont forget to set the object

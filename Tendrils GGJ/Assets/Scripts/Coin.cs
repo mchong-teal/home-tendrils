@@ -14,14 +14,14 @@ public class Coin : MonoBehaviour
         {
             Debug.Log("coin1");
             player1 = other.gameObject;
-            player1.GetComponent<Money_System>().gainMoney_01(Value);
+            player1.GetComponent<Money_System>().gainMoney(Value, 0);
             Destroy(this.gameObject);
         }
         if (other.gameObject.tag == "player_02")
         {
             Debug.Log("coin2");
             player2 = other.gameObject;
-            player2.GetComponent<Money_System>().gainMoney_02(Value);
+            player2.GetComponent<Money_System>().gainMoney(Value, 1);
             Destroy(this.gameObject);
         }
     }

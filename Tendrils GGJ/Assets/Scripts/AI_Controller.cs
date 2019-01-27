@@ -15,12 +15,12 @@ public class AI_Controller : MonoBehaviour {
     float bigWalkNumber;
     Player_Rotation rot;
     Map_Gen map;
-    int triggerCount;
+    bool trigger;
 
 
     void Start() {
 
-        triggerCount = 0;
+        trigger = true;
         this.transform.localScale = new Vector2(10.0f, 10.0f);
         this.transform.GetChild(0).position = new Vector2(10000, 10000);
         rot = GetComponent<Player_Rotation>();
@@ -42,12 +42,14 @@ public class AI_Controller : MonoBehaviour {
         this.planetPos = planetPos_;
         this.planetRad = planetRad_;
         this.planetRot = planetRot_;
+        if (planetRot_ < 0) {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
 
-        if (collision.gameObject.tag == "Player" && triggerCount == 0) {
-            Debug.Log("Collision");
+        if (collision.gameObject.tag == "Player" && this.trigger) {
             if (collision.gameObject.GetComponent<Character>().isGrounded) {
 
                 GameObject player = collision.gameObject;
@@ -72,18 +74,21 @@ public class AI_Controller : MonoBehaviour {
                     // Player has item and it is not current connected to planet
                     // Generate accept text
                     player.GetComponent<Character>().ItemAccepted();
+                    player.GetComponent<Money_System>().gainMoney(100.0f, player.GetComponent<Character>().playerId);
                     ui.DisplayEventMessage("Thank you Wanderer. With this artifact the connections of this galaxy grow stronger.", player.GetComponent<Character>().playerId);
                 }
-                triggerCount = 1;
             }
+            this.trigger = false;
         }
+        else { return; }
     }
 
     void OnTriggerExit2D(Collider2D collision) {
         
         if (collision.gameObject.tag == "Player") {
             transform.GetChild(0).position = new Vector2(10000, 10000);
-            triggerCount = 0;
+            this.trigger = true;
         }
+        this.trigger = true;
     }
 }
