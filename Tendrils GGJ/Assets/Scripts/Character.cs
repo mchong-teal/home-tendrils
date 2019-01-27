@@ -34,7 +34,7 @@ public class Character : MonoBehaviour {
     bool jump;
 
     // Checks
-    bool isGrounded;
+    public bool isGrounded;
     int isOnPlanet;
 
     // Fuel System

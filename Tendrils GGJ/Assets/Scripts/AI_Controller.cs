@@ -5,7 +5,7 @@ using UnityEngine;
 public class AI_Controller : MonoBehaviour {
 
     // public variables 
-    public float planetid;
+    public int planetid;
 
     // private variables
     float planetAngle;
@@ -43,8 +43,31 @@ public class AI_Controller : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision) {
 
         if (collision.gameObject.tag == "Player") {
-            Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * (planetRad + 6.0f);
-            transform.GetChild(0).position = planetPos + offset;
+            if (collision.gameObject.GetComponent<Character>().isGrounded) {
+                GameObject player = collision.gameObject;
+
+                // Text Box
+                Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * (planetRad + 6.0f);
+                transform.GetChild(0).position = planetPos + offset;
+
+                // Connections
+                int inv = player.GetComponent<Character>().inventoryPlanet;
+                Map_Gen map = GetComponentInParent<Map_Gen>();
+                if (inv == -1) {
+                    // Generate empty inventory text
+                    player.GetComponent<Character>().inventoryPlanet = planetid;
+                    player.GetComponent<Upgrade_System>().DisplayEventMessage("You are not carrying an artifact. Here, take one", player.GetComponent<Character>().playerId);
+                }
+                else if (inv > -1 && map.ArePlanetsConnected(planetid, inv)) {
+                    // Generate reject text
+                    player.GetComponent<Upgrade_System>().DisplayEventMessage("You have already brought this artifact to us Wanderer.", player.GetComponent<Character>().playerId);
+                }
+                else {
+                    // Player has item and it is not current connected to planet
+                    // Generate accept text
+                    
+                }
+            }
         }
     }
 
