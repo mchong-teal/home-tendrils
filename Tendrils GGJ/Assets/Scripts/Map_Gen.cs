@@ -69,7 +69,9 @@ public class Map_Gen : MonoBehaviour
            for (int j = 0; j < Constants.MAP_TILE_LENGTH; j++) {
                int size = Random.Range(1, 4);
                float posX = Random.Range(0, Constants.MAP_TILE_SIZE) + i * Constants.MAP_TILE_SIZE;
+               posX -= 500;
                float posY = Random.Range(0, Constants.MAP_TILE_SIZE) + j * Constants.MAP_TILE_SIZE;
+               posY -= 500;
                SuperMassive newSuper = (SuperMassive) Instantiate(superM);
                newSuper.InitSuperMassive(posX, posY, size, -25);
            }
