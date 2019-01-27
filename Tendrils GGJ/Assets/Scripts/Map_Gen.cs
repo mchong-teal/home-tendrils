@@ -5,6 +5,7 @@ using UnityEngine;
 public class Map_Gen : MonoBehaviour
 {
     List<Planet> galaxy = new List<Planet>();
+    List<List<Tether>> networks = new List<List<Tether>>();
     public Planet planet;
     // List<PlanetPr> directionArrows;
     // Start is called before the first frame update
@@ -30,6 +31,7 @@ public class Map_Gen : MonoBehaviour
         foreach(Character player in players)
         {
             player.InitCharacter(playerId, galaxy[playerId].planetIdx);
+            networks.Add(new List<Tether>());
         }
     }
 

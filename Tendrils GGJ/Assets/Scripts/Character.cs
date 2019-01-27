@@ -24,8 +24,6 @@ public class Character : MonoBehaviour {
 
     // private variables
 
-    // UI
-
     Rigidbody2D rb;
     Player_Rotation rot;
 
@@ -52,9 +50,9 @@ public class Character : MonoBehaviour {
     Animator anim;
 
     // Capture stuff
-    int playerId;
+    public int playerId;
     int homePlanet;
-    int inventoryPlanet; // The planet the player last got an item from
+    public int inventoryPlanet; // The planet the player last got an item from
     Map_Gen galaxy;
     bool tryPickup;
     List<Tether> network; // Going with an edge list representation I guess..
