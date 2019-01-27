@@ -5,6 +5,7 @@ using UnityEngine;
 public class Map_Gen : MonoBehaviour
 {
     List<Planet> galaxy = new List<Planet>();
+    List<List<Tether>> networks = new List<List<Tether>>();
     public Planet planet;
     // List<PlanetPr> directionArrows;
     // Start is called before the first frame update
@@ -29,7 +30,12 @@ public class Map_Gen : MonoBehaviour
         int playerId = 0;
         foreach(Character player in players)
         {
-            player.InitCharacter(playerId, galaxy[playerId].planetIdx);
+            int homeIdx = galaxy[playerId].planetIdx;
+            player.InitCharacter(playerId, homeIdx);
+            this.networks.Add(new List<Tether>());
+            // Add Home Planet (in network, connected to itself)
+            this.ConnectPlanets(homeIdx, homeIdx, playerId);
+            playerId++;
         }
     }
 
@@ -40,6 +46,7 @@ public class Map_Gen : MonoBehaviour
             Planet newPlanet = (Planet) Instantiate(planet);
             newPlanet.InitPlanet(planetId, pp);
             this.galaxy.Add(newPlanet);
+            planetId++;
         });
    }
 
@@ -50,4 +57,39 @@ public class Map_Gen : MonoBehaviour
        }
        return galaxy[idx];
    }
+
+    // Worst case O(2n*m) search in n - number of links in network, m - number of players
+   public bool ArePlanetsConnected(int p1Idx, int p2Idx)
+   {
+       if (p1Idx == p2Idx) {
+           return true;
+       }
+       foreach(List<Tether> network in this.networks) {
+           foreach(Tether link in network) {
+               if (link.DoesConnectPlanet(p1Idx) && link.DoesConnectPlanet(p2Idx)) {
+                   return true;
+               }
+           }
+       }
+       return false;
+   }
+
+   public void ConnectPlanets(int p1Idx, int p2Idx, int charId)
+   {
+       // TODO: instantiate new tether
+       Tether link = new Tether();
+       link.InitTether(p1Idx, p2Idx, charId);
+       this.networks[charId].Add(link);
+   }
+
+    // Worst case O(2n) search in number of links in network
+    public bool IsPlanetInNetwork(int charIdx, int planetIdx) {
+        foreach (Tether link in this.networks[charIdx]) {
+            if (link.DoesConnectPlanet(planetIdx)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
