@@ -59,7 +59,7 @@ public class Map_Gen : MonoBehaviour
        return false;
    }
 
-   public void ConnectPlanets(int p1Idx, int p2Idx)
+   public void ConnectPlanets(int p1Idx, int p2Idx, int charId)
    {
        //TODO
    }
