@@ -38,7 +38,7 @@ public class npc_Script : MonoBehaviour
                 questDone = true;
                 
                 mytextpro.SetText("Thank you");
-                player1.GetComponent<Money_System>().gainMoney_01(100.0f);
+                player1.GetComponent<Money_System>().gainMoney(100.0f, 0);
                 //  capture planet code would go here
             }
            

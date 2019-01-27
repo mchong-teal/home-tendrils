@@ -29,7 +29,7 @@ public class Fuel_System : MonoBehaviour {
         }
 
         if (maxDelay <= 0) {
-            maxDelay = 3.0f;
+            maxDelay = 2.0f;
             Debug.LogWarning("Max Delay not set properly in " + name + ". Defaulting to: " + maxDelay);
         }
 
@@ -65,6 +65,11 @@ public class Fuel_System : MonoBehaviour {
     public void UseJetForce() {
         delay = maxDelay;
         fuel -= fuelTick;
+    }
+
+    public void UseJetForce(bool jf) {
+        delay = maxDelay;
+        fuel -= fuel;
     }
 
     public void IdleJetForce() {

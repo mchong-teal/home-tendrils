@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    GameObject player1;
-    GameObject player2;
+    GameObject player;
+    
     public float Value; // how much the player gets if they hit the coin
+    private void Start()
+    {
+        if(Value<=0)
+        {
+            Value = 5.0f;
+        }
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("trigger");
-        if (other.gameObject.tag == "player_01")  //seperated so the player who hits the coin gets it
+        if (other.gameObject.tag == "Player")  //seperated so the player who hits the coin gets it
         {
             Debug.Log("coin1");
-            player1 = other.gameObject;
-            player1.GetComponent<Money_System>().gainMoney_01(Value);
+            player = other.gameObject;
+          
+            player.GetComponent<Money_System>().gainMoney(Value, player.GetComponent<Character>().playerId);
             Destroy(this.gameObject);
         }
-        if (other.gameObject.tag == "player_02")
-        {
-            Debug.Log("coin2");
-            player2 = other.gameObject;
-            player2.GetComponent<Money_System>().gainMoney_02(Value);
-            Destroy(this.gameObject);
-        }
+        
     }
 }
 

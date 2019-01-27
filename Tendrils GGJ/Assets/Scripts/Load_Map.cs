@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class LoadMap {
-
-    public const int CSV_ENTRIES = 2;
+    
+   public const int CSV_ENTRIES = 2;
     public static List<PlanetParam> LoadPlanets()
     {
+        Dictionary<string, string> PLANET_SPRITE_MAP = new Dictionary<string, string>() {
+            {"a", "Planets/swamp"},
+            {"b", "Planets/brownplanet"},
+            {"c", "Planets/tinyplanet"},
+            {"d", "Planets/desertplanet"},
+            {"e", "Planets/Earthlike"}
+        };
+ 
         List<PlanetParam> planets = new List<PlanetParam>();
 
         try
@@ -15,12 +23,12 @@ public static class LoadMap {
             List<string> planetData = new List<string>(mapData.text.Split('\n'));
             planetData.RemoveAt(0); //Remove header line
             foreach(string planetLine in planetData) {
-                string[] pp = planetLine.Split(',');
+                string[] pp = planetLine.Trim().Split(',');
                 int x = int.Parse(pp[0]);
                 int y = int.Parse(pp[1]);
                 int scale = int.Parse(pp[2]);
                 int grav = int.Parse(pp[3]);
-                string spriteImage = pp[5];
+                string spriteImage = PLANET_SPRITE_MAP[pp[5]];
 
                 // Rotation
                 float rot = newPlanetRotation();
@@ -43,6 +51,6 @@ public static class LoadMap {
     }
 
     private static float newPlanetRotation() {
-        return UnityEngine.Random.Range(0.001f, 0.005f);
+        return UnityEngine.Random.Range(0.025f, 0.1f);
     }
 }
