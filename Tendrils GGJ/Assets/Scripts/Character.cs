@@ -170,6 +170,8 @@ public class Character : MonoBehaviour {
             if (this.inventoryPlanet >= 0) {
                 this.inventoryPlanet = -1;
                 this.displayMessage = "You have dropped your artifact.";
+                EventSystem es = GameObject.Find("UI_and_Upgrade_Menu").GetComponent<EventSystem>();
+                es.DisableIcon();
             }
             else {
                 this.displayMessage = "You have no artifact to drop";
@@ -263,7 +265,6 @@ public class Character : MonoBehaviour {
         rot.SetRotation(spaceAngle - (Mathf.PI / 2));
         JetManager();
 
-        Debug.Log(this.transform.position.x);
         if (Mathf.Abs(this.transform.position.x) > 1500 || Mathf.Abs(this.transform.position.y) > 1500) {
             this.displayMessage = "Press Shift to deploy Space brakes";
         }
@@ -327,6 +328,8 @@ public class Character : MonoBehaviour {
         this.displayMessage = "You have collected a souvenir from this world";
         animatePickup = true; // TODO Animate;
         this.inventoryPlanet = isOnPlanet;
+        EventSystem es = GameObject.Find("UI_and_Upgrade_Menu").GetComponent<EventSystem>();
+        es.EnableIcon();
     }
 
     Planet GetPlanet(int idx) {
@@ -337,6 +340,9 @@ public class Character : MonoBehaviour {
     {
         this.galaxy.ConnectPlanets(this.isOnPlanet, this.inventoryPlanet, this.playerId);
         this.inventoryPlanet = -1;
+
+        EventSystem es = GameObject.Find("UI_and_Upgrade_Menu").GetComponent<EventSystem>();
+        es.DisableIcon();
     }
 
     void BoundingManager() {

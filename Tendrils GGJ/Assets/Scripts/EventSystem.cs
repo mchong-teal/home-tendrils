@@ -39,7 +39,7 @@ public class EventSystem : MonoBehaviour
         textTime = 5.0f;
         textOn = true;
     }
-    public void DiableIcon()
+    public void DisableIcon()
     {
         itemIcon.SetActive(false);
     }
