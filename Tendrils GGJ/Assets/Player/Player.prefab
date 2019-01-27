@@ -156,6 +156,7 @@ MonoBehaviour:
   isGroundLayer:
     serializedVersion: 2
     m_Bits: 256
+  anim: {fileID: 5418722362761809214}
   ArrowPrefab: {fileID: 5535807049625192390, guid: 3d6c7c2b611e7cb4daa7899851969abe,
     type: 3}
 --- !u!114 &1382933904
