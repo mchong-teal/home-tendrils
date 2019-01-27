@@ -45,12 +45,13 @@ public class Planet: MonoBehaviour
 
         // Gravity
         this.gravityEffector = GetComponentInChildren<PointEffector2D>();
-        this.gravityEffector.forceMagnitude = param.gravity;
+        this.gravityEffector.forceMagnitude = param.gravity*2;
         this.rotation = param.rotation;
 
         SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
-        sr.sprite = Resources.Load<Sprite>("Planets/Earthlike");
-        circleCollider.radius = 6;
+        Sprite s = Resources.Load<Sprite>("Planets/Earthlike");
+        sr.sprite = s;
+        circleCollider.radius = s.bounds.size.x/2 - .1f;
 
         // NPCs
         npc = (AI_Controller) Instantiate(npcPrefab, this.transform.position + (Vector3.up * this.transform.localScale.x), Quaternion.identity);

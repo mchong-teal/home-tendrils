@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceSpeed: 0
   planetSpeed: 0
-  groundCheckRadius: 6.46
+  groundCheckRadius: 4.3
   planetCheckRadius: 250
   groundCheck: {fileID: 9068466969699316183}
   isGroundLayer:
