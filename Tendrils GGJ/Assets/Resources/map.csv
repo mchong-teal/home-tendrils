@@ -1,5 +1,5 @@
 x,y,size,gravity,rotation,sprite
-0,0,30,-300,0,earth
+0,0,1200,-300,0,a
 1000,40,30,-300,0,earth
 0,1000,20,-300,0,earth
 700,300,40,-300,0,earth

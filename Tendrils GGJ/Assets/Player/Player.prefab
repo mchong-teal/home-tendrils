@@ -159,6 +159,9 @@ MonoBehaviour:
     m_Bits: 256
   ArrowPrefab: {fileID: 5535807049625192390, guid: 3d6c7c2b611e7cb4daa7899851969abe,
     type: 3}
+  isGrounded: 0
+  playerId: 0
+  inventoryPlanet: 0
 --- !u!114 &1382933904
 MonoBehaviour:
   m_ObjectHideFlags: 0
