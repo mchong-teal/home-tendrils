@@ -83,7 +83,7 @@ public class Planet: MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.name == "Player"){
-            fadeanim.SetBool("Fade", true);
+            fadeanim.SetBool("Fade", false);
         }
     }
 
@@ -91,7 +91,7 @@ public class Planet: MonoBehaviour
     {
         if (collider.gameObject.name == "Player")
         {
-            fadeanim.SetBool("Fade", false);
+            fadeanim.SetBool("Fade", true);
         }
     }
 
