@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceSpeed: 0
   planetSpeed: 0
-  groundCheckRadius: 6.41
+  groundCheckRadius: 6.46
   planetCheckRadius: 250
   groundCheck: {fileID: 9068466969699316183}
   isGroundLayer:
@@ -190,8 +190,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0019441486, y: 0.0413949}
-  m_Size: {x: 0.18033072, y: 0.59122676}
+  m_Offset: {x: -0.0024297237, y: 0.041203212}
+  m_Size: {x: 0.21757407, y: 0.58088124}
   m_Direction: 0
 --- !u!95 &5418722362761809214
 Animator:

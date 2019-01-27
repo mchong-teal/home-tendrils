@@ -42,8 +42,12 @@ public class Upgrade_System : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
        
         if (Input.GetKeyDown(KeyCode.P)) {
+=======
+       if (Input.GetKeyDown(KeyCode.P)) {
+>>>>>>> e6d90bfd1b2e3f01eff54504e120325bf944e379
             if (upgradeSystemActive == false)
             {
                 upgradeSystemActive = true;
@@ -109,9 +113,9 @@ public class Upgrade_System : MonoBehaviour
 
 
     }
-    public void testingEventText()
+    public void DisplayEventMessage(string text, int playerId)
     {
-        AllText.GetComponent<EventSystem>().eventText.text = " text here"; // put a line like this whenever you want to change the text dont forget to set the object
+        AllText.GetComponent<EventSystem>().eventText.text = text; // put a line like this whenever you want to change the text dont forget to set the object
         AllText.GetComponent<EventSystem>().Changetext();
     }
 }
