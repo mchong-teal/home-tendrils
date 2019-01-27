@@ -99,14 +99,6 @@ public class Character : MonoBehaviour {
             groundCheck = GameObject.Find("GroundCheck").GetComponent<Transform>();
         }
 
-        if (groundCheckRadius <= 0) {
-            groundCheckRadius = 0.1f;
-        }
-
-        if (planetCheckRadius <= 10) {
-            planetCheckRadius = 10;
-        }
-
         anim = GetComponent<Animator>();
         
         if (!anim)
