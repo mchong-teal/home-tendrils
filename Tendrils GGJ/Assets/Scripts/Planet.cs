@@ -63,23 +63,14 @@ public class Planet: MonoBehaviour
         this.gravityEffector.forceMagnitude = adjustedGrav;
         this.rotation = param.rotation;
 
-        this.planetSprite = this.GetComponent<SpriteRenderer>();
-        Sprite s = Resources.Load<Sprite>(param.spriteImage);
-        this.planetSprite.sprite = s;
-        circleCollider.radius = s.bounds.size.x/2 - .1f;
-
-        int npcCount = (int)circleCollider.radius;
-
         // NPCs
-        for (int i = 0; i < npcCount; i++) {
-            npc = (AI_Controller)Instantiate(npcPrefab, this.transform.position + (Vector3.up * this.transform.localScale.x), Quaternion.identity);
-            npc.planetid = idx;
-            npc.walkSpeed = Random.Range(1.0f, 1.5f);
-            int rand = Random.Range(0, 1);
-            if (rand == 0) { rand = -1; }
-            npc.PlanetPosition(this.transform.position, this.transform.localScale.x * this.circleCollider.radius, this.rotation);
-            npc.x = rand;
-        }
+        npc = (AI_Controller)Instantiate(npcPrefab, this.transform.position + (Vector3.up * this.transform.localScale.x), Quaternion.identity);
+        npc.planetid = idx;
+        npc.walkSpeed = Random.Range(1.0f, 1.5f);
+        int rand = Random.Range(0, 1);
+        if (rand == 0) { rand = -1; }
+        npc.PlanetPosition(this.transform.position, this.transform.localScale.x * this.groundCollider.radius, this.rotation);
+        npc.x = rand;
     }
 
 
