@@ -304,7 +304,7 @@ public class Character : MonoBehaviour {
             this.displayMessage = "You don't know anyone on this planet";
             return;
         }
-        Debug.Log("pickup");
+        this.displayMessage = "You have collected a souvenir from this world";
         animatePickup = true; // TODO Animate;
         this.inventoryPlanet = isOnPlanet;
     }
