@@ -165,6 +165,16 @@ public class Character : MonoBehaviour {
             ItemPickupHandler();
             this.tryPickup = false;
         }
+        if (this.drop) {
+            if (this.inventoryPlanet >= 0) {
+                this.inventoryPlanet = -1;
+                this.displayMessage = "You have dropped your artifact.";
+            }
+            else {
+                this.displayMessage = "You have no artifact to drop";
+            }
+            this.drop = false;
+        }
     }
 
     void MoveManager() {
@@ -307,6 +317,7 @@ public class Character : MonoBehaviour {
             this.displayMessage = "You don't know anyone on this planet";
             return;
         }
+        
         this.displayMessage = "You have collected a souvenir from this world";
         animatePickup = true; // TODO Animate;
         this.inventoryPlanet = isOnPlanet;
