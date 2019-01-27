@@ -7,6 +7,7 @@ public class Map_Gen : MonoBehaviour
     List<Planet> galaxy = new List<Planet>();
     List<List<Tether>> networks = new List<List<Tether>>();
     public Planet planet;
+    public Tether tether;
     // List<PlanetPr> directionArrows;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class Map_Gen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // Initialize players with ids and home planets
@@ -76,14 +77,17 @@ public class Map_Gen : MonoBehaviour
 
    public void ConnectPlanets(int p1Idx, int p2Idx, int charId)
    {
-       // TODO: instantiate new tether
-       Tether link = new Tether();
-       link.InitTether(p1Idx, p2Idx, charId);
+       Tether link = (Tether) Instantiate(tether);
+       Planet start = this.GetPlanet(p1Idx);
+       Planet end = this.GetPlanet(p2Idx);
+       link.InitTether(p1Idx, p2Idx, charId, start.transform.position, end.transform.position);
        this.networks[charId].Add(link);
    }
 
     // Worst case O(2n) search in number of links in network
     public bool IsPlanetInNetwork(int charIdx, int planetIdx) {
+
+        Planet newPlanet = (Planet) Instantiate(planet);
         foreach (Tether link in this.networks[charIdx]) {
             if (link.DoesConnectPlanet(planetIdx)) {
                 return true;

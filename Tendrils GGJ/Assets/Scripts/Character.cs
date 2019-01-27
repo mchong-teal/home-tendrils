@@ -291,4 +291,10 @@ public class Character : MonoBehaviour {
     Planet GetPlanet(int idx) {
         return GetComponentInParent<Map_Gen>().GetPlanet(idx);
     }
+
+    public void ItemAccepted()
+    {
+        this.galaxy.ConnectPlanets(this.isOnPlanet, this.inventoryPlanet, this.playerId);
+        this.inventoryPlanet = -1;
+    }
 }
