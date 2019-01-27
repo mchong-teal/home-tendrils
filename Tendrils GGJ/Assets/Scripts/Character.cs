@@ -24,6 +24,7 @@ public class Character : MonoBehaviour {
 
     // private variables
     Rigidbody2D rb;
+    Player_Rotation rot;
 
     // Input Checks
     float dx;
@@ -70,6 +71,7 @@ public class Character : MonoBehaviour {
 
         rb = GetComponent<Rigidbody2D>();
         fs = GetComponent<Fuel_System>();
+        rot = GetComponent<Player_Rotation>();
         galaxy = GetComponent<Map_Gen>();
         network = new List<Tether>();
 
@@ -142,6 +144,7 @@ public class Character : MonoBehaviour {
         InputManager();
         ActionManager();
         MoveManager();
+        
         AnimatorManager();
     }
 
@@ -171,9 +174,9 @@ public class Character : MonoBehaviour {
 
         if (groundCheck) {
             Vector2 size = new Vector2(groundCheckRadius / 2.5f, groundCheckRadius);
-            isGrounded = Physics2D.OverlapCapsule(groundCheck.position, size, CapsuleDirection2D.Vertical, 0.0f, isGroundLayer);
+            isGrounded = Physics2D.OverlapCapsule(groundCheck.position, size, CapsuleDirection2D.Vertical, (planetAngle * Mathf.Rad2Deg) - 90.0f, isGroundLayer);
             if (isGrounded) {
-                Collider2D planet = Physics2D.OverlapCapsule(groundCheck.position, size, CapsuleDirection2D.Vertical, 0.0f, isGroundLayer);
+                Collider2D planet = Physics2D.OverlapCapsule(groundCheck.position, size, CapsuleDirection2D.Vertical, (planetAngle * Mathf.Rad2Deg) - 90.0f, isGroundLayer);
                 planetCenter = planet.transform.position;
                 planetRadius = planet.GetComponent<CircleCollider2D>().radius;
                 planetScale = planet.transform.localScale.x;
@@ -218,21 +221,23 @@ public class Character : MonoBehaviour {
         }
     }
 
-
     void PlanetMoveManager() {
         rb.velocity = Vector2.zero;
-        planetAngle -= (((dx * planetSpeed) + planetRotation) * 360) / (Mathf.PI * Mathf.Pow(planetRadius * planetScale, 2));
-        Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * ((planetRadius * planetScale) + 1.2f);
+        planetAngle -= (((dx * planetSpeed) + planetRotation) * Mathf.PI * 720) / (Mathf.PI * Mathf.Pow(planetRadius * planetScale, 2));
+        Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * ((planetRadius * planetScale) + 2.0f);
         transform.position = planetCenter + offset;
         JetManager();
+        rot.SetRotation(planetAngle - (Mathf.PI / 2));
     }
 
     void SpaceMoveManager() {
         Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
         rb.AddForce(spaceMovement * spaceSpeed);
+        float spaceAngle = Mathf.Atan2(rb.velocity.y, rb.velocity.x);
         planetAngle = 0;
         isOnPlanet = null;
         JetManager();
+        rot.SetRotation(spaceAngle - (Mathf.PI / 2));
     }
 
     void JetManager() {
@@ -244,10 +249,9 @@ public class Character : MonoBehaviour {
         }
         else if (jump && isGrounded) {
             ///Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
-            Vector2 dirVec = new Vector2(transform.position.x - planetCenter.x, transform.position.y - planetCenter.y).normalized;
-            Vector3 spaceMovement = new Vector3(dirVec.x, dirVec.y, 0.0f);
+            Vector3 dirVec = new Vector3(transform.position.x - planetCenter.x, transform.position.y - planetCenter.y, 0.0f).normalized;
             fs.UseJetForce();
-            rb.AddForce(spaceMovement * fs.jetForce * 2, ForceMode2D.Impulse);
+            rb.AddForce(dirVec * fs.jetForce * 2, ForceMode2D.Impulse);
             fs.JetOn = true;
         }
         else { fs.JetOn = false; }
