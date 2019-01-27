@@ -20,15 +20,7 @@ public class EventSystem : MonoBehaviour
     
     {
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            DiableIcon();
-        }
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            EnableIcon();
-        }
+        
 
         if (textOn == true) { 
         textTime -= Time.deltaTime;
