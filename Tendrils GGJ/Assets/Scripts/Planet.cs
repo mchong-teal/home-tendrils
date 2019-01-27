@@ -62,7 +62,7 @@ public class Planet: MonoBehaviour
         // NPCs
         npc = (AI_Controller) Instantiate(npcPrefab, this.transform.position + (Vector3.up * this.transform.localScale.x), Quaternion.identity);
         npc.planetid = idx;
-        npc.walkSpeed = Random.Range(1, 4);
+        npc.walkSpeed = Random.Range(1.0f, 1.5f);
     }
 
 

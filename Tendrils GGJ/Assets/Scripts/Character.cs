@@ -267,8 +267,9 @@ public class Character : MonoBehaviour {
         }
         else if (!isGrounded && jump) {
             Vector3 spaceMovement = new Vector3(Mathf.Cos(spaceAngle), Mathf.Sin(spaceAngle), 0.0f);
+            float fuelRatio = fs.fuel / fs.maxFuel;
+            rb.AddForce(spaceMovement * fs.jetForce * 4 * fuelRatio, ForceMode2D.Impulse);
             fs.UseJetForce(jump);
-            rb.AddForce(spaceMovement * fs.jetForce * 4, ForceMode2D.Impulse);
             fs.JetOn = true;
         }
         else if (jump && isGrounded) {
