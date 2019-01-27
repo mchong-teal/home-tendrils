@@ -178,7 +178,7 @@ MonoBehaviour:
   maxDelay: 2
   fuel: 100
   maxFuel: 100
-  jetForce: 14
+  jetForce: 10
   fuelslider: {fileID: 0}
   JetOn: 0
 --- !u!70 &5971103248091778550

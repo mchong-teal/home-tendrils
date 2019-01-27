@@ -659,7 +659,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267369398}
   m_CullTransparentMesh: 0
---- !u!1001 &1948186626
+--- !u!1001 &2046227050
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -689,17 +689,17 @@ PrefabInstance:
     - target: {fileID: 9154755328421481806, guid: 592f8da86a87ab6448bce69c1e501762,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9154755328421481806, guid: 592f8da86a87ab6448bce69c1e501762,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9154755328421481806, guid: 592f8da86a87ab6448bce69c1e501762,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9154755328421481806, guid: 592f8da86a87ab6448bce69c1e501762,
         type: 3}
@@ -724,26 +724,6 @@ PrefabInstance:
     - target: {fileID: 9154755328421481806, guid: 592f8da86a87ab6448bce69c1e501762,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9154755329702306532, guid: 592f8da86a87ab6448bce69c1e501762,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9154755329410719699, guid: 592f8da86a87ab6448bce69c1e501762,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7139618548491174401, guid: 592f8da86a87ab6448bce69c1e501762,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7139618548491174401, guid: 592f8da86a87ab6448bce69c1e501762,
-        type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2131940101576438501, guid: 592f8da86a87ab6448bce69c1e501762,
@@ -858,5 +838,10 @@ PrefabInstance:
       propertyPath: fuelslider
       value: 
       objectReference: {fileID: 838795981}
+    - target: {fileID: 7368948691914852139, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
+        type: 3}
+      propertyPath: jetForce
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2424fb29d83f10e4e8ee6e693e90c3ff, type: 3}
