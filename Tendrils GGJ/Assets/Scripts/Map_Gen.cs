@@ -55,11 +55,21 @@ public class Map_Gen : MonoBehaviour
 
    void AddSuperMassives()
    {
-       for (int i = 0; i < 10; i++) {
-           for (int j = 0; j < 10; j++) {
+       // Don't generate supermassives in planet squares
+       bool[,] planetMap = new bool[Constants.MAP_TILE_LENGTH,Constants.MAP_TILE_LENGTH];
+       foreach(Planet p in galaxy) {
+           float lowX = p.transform.position.x - p.groundCollider.radius;
+           float highX = p.transform.position.x + p.groundCollider.radius;
+           float lowY = p.transform.position.y - p.groundCollider.radius;
+           float highY = p.transform.position.y + p.groundCollider.radius;
+        //    for (float start = )
+       }
+
+       for (int i = 0; i < Constants.MAP_TILE_LENGTH; i++) {
+           for (int j = 0; j < Constants.MAP_TILE_LENGTH; j++) {
                int size = Random.Range(1, 4);
-               float posX = Random.Range(0, 100) + i * 100;
-               float posY = Random.Range(0, 100) + j * 100;
+               float posX = Random.Range(0, Constants.MAP_TILE_SIZE) + i * Constants.MAP_TILE_SIZE;
+               float posY = Random.Range(0, Constants.MAP_TILE_SIZE) + j * Constants.MAP_TILE_SIZE;
                SuperMassive newSuper = (SuperMassive) Instantiate(superM);
                newSuper.InitSuperMassive(posX, posY, size, -25);
            }

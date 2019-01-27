@@ -28,7 +28,7 @@ public class Tether: MonoBehaviour
     }
 
     void Update() {
-
+        
     }
 
     public bool DoesConnectPlanet(int idx) {

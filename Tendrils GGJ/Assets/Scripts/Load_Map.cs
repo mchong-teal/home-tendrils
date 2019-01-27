@@ -51,6 +51,6 @@ public static class LoadMap {
     }
 
     private static float newPlanetRotation() {
-        return UnityEngine.Random.Range(0.01f, 0.05f);
+        return UnityEngine.Random.Range(0.001f, 0.005f);
     }
 }
