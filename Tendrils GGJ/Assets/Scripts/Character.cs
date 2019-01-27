@@ -261,6 +261,11 @@ public class Character : MonoBehaviour {
         isOnPlanet = -1;
         rot.SetRotation(spaceAngle - (Mathf.PI / 2));
         JetManager();
+
+        Debug.Log(this.transform.position.x);
+        if (Mathf.Abs(this.transform.position.x) > 1500 || Mathf.Abs(this.transform.position.y) > 1500) {
+            this.displayMessage = "Press Shift to deploy Space brakes";
+        }
     }
 
     void JetManager() {
