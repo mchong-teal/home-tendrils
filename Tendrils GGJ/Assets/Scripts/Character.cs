@@ -266,7 +266,7 @@ public class Character : MonoBehaviour {
         else if (!isGrounded && jump) {
             Vector3 spaceMovement = new Vector3(Mathf.Cos(spaceAngle), Mathf.Sin(spaceAngle), 0.0f);
             fs.UseJetForce(jump);
-            rb.AddForce(spaceMovement * fs.jetForce, ForceMode2D.Impulse);
+            rb.AddForce(spaceMovement * fs.jetForce * 4, ForceMode2D.Impulse);
             fs.JetOn = true;
         }
         else if (jump && isGrounded) {

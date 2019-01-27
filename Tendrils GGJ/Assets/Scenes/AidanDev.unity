@@ -347,7 +347,7 @@ PrefabInstance:
     - target: {fileID: 1989018060391241420, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
         type: 3}
       propertyPath: m_TagString
-      value: player_01
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2424fb29d83f10e4e8ee6e693e90c3ff, type: 3}
