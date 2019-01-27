@@ -264,7 +264,8 @@ public class Character : MonoBehaviour {
 
     void PlanetMoveManager() {
         rb.velocity = Vector2.zero;
-        planetAngle -= (((dx * planetSpeed) - planetRotation) * Mathf.PI * 720) / (Mathf.PI * Mathf.Pow(planetRadius * planetScale, 2));
+        planetAngle -= ((((dx * planetSpeed)) * Mathf.PI * 720)) / (Mathf.PI * Mathf.Pow(planetRadius * planetScale, 2));
+        planetAngle += planetRotation*Mathf.Deg2Rad;
         Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * ((planetRadius * planetScale) + 2.0f);
         transform.position = planetCenter + offset;
         JetManager();
