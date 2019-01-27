@@ -242,6 +242,10 @@ public class Character : MonoBehaviour {
             rb.AddForce(spaceMovement * fs.jetForce, ForceMode2D.Force);
             fs.JetOn = true;
         }
+        else if (!isGrounded && jf) {
+            rb.velocity = Vector3.zero;
+            fs.UseJetForce(jf);
+        }
         else if (jump && isGrounded) {
             ///Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
             Vector3 dirVec = new Vector3(transform.position.x - planetCenter.x, transform.position.y - planetCenter.y, 0.0f).normalized;
