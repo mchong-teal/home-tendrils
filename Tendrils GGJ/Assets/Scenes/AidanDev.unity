@@ -219,6 +219,21 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1695908088411325016, guid: 0300edb66498fb649a4986df8fb6bd8b,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.48637262
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695908088411325016, guid: 0300edb66498fb649a4986df8fb6bd8b,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.29814878
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695908088411325016, guid: 0300edb66498fb649a4986df8fb6bd8b,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.9433962
+      objectReference: {fileID: 0}
     - target: {fileID: 1695908088405062527, guid: 0300edb66498fb649a4986df8fb6bd8b,
         type: 3}
       propertyPath: player1

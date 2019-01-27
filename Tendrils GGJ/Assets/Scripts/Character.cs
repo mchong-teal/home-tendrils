@@ -30,8 +30,9 @@ public class Character : MonoBehaviour {
     // Input Checks
     float dx;
     float dy;
-    bool jf;
+    bool brakes;
     bool jump;
+    bool drop;
     float spaceAngle;
     SpriteRenderer sr;
 
@@ -177,9 +178,10 @@ public class Character : MonoBehaviour {
     void InputManager() {
         dx = Input.GetAxisRaw("Horizontal");
         dy = Input.GetAxisRaw("Vertical");
-        jf = Input.GetButton("Fire1");
         jump = Input.GetButtonDown("Jump");
+        brakes = Input.GetButton("Fire1");
         tryPickup = Input.GetButtonDown("Fire2");
+        drop = Input.GetButtonDown("Fire3");
     }
 
     void GroundCheck() {
@@ -235,7 +237,7 @@ public class Character : MonoBehaviour {
 
     void PlanetMoveManager() {
         rb.velocity = Vector2.zero;
-        planetAngle -= (((dx * planetSpeed) + planetRotation) * Mathf.PI * 720) / (Mathf.PI * Mathf.Pow(planetRadius * planetScale, 2));
+        planetAngle -= (((dx * planetSpeed) - planetRotation) * Mathf.PI * 720) / (Mathf.PI * Mathf.Pow(planetRadius * planetScale, 2));
         Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * ((planetRadius * planetScale) + 2.0f);
         transform.position = planetCenter + offset;
         JetManager();
@@ -258,9 +260,9 @@ public class Character : MonoBehaviour {
             rb.AddForce(spaceMovement * fs.jetForce, ForceMode2D.Force);
             fs.JetOn = true;
         }
-        else if (!isGrounded && jf) {
+        else if (!isGrounded && brakes) {
             rb.velocity = Vector3.zero;
-            fs.UseJetForce(jf);
+            fs.UseJetForce(brakes);
             fs.JetOn = false;
         }
         else if (!isGrounded && jump) {
