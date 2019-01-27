@@ -2196,7 +2196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93555d11fa211ac4fa4c2b7eac0d1fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSystemActive: 0
+  upgradeSystemActive: 1
   UpgradeMenu: {fileID: 1695908089164133231}
   AllText: {fileID: 1695908088405062498}
   player1: {fileID: 0}
@@ -2226,9 +2226,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventText: {fileID: 1695908088899880174}
-  textOn: 0
+  textOn: 1
   textTime: 0
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 470981266}
 --- !u!1 &1695908088411325018
 GameObject:
   m_ObjectHideFlags: 0
