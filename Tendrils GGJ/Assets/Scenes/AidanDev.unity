@@ -219,21 +219,6 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1695908088411325016, guid: 0300edb66498fb649a4986df8fb6bd8b,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.48637262
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695908088411325016, guid: 0300edb66498fb649a4986df8fb6bd8b,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.29814878
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695908088411325016, guid: 0300edb66498fb649a4986df8fb6bd8b,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.9433962
-      objectReference: {fileID: 0}
     - target: {fileID: 1695908088405062527, guid: 0300edb66498fb649a4986df8fb6bd8b,
         type: 3}
       propertyPath: player1
@@ -344,26 +329,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1989018060391241425, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
-        type: 3}
-      propertyPath: planetCheckRadius
-      value: 750
-      objectReference: {fileID: 0}
     - target: {fileID: 7368948691914852139, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
         type: 3}
       propertyPath: fuelslider
       value: 
       objectReference: {fileID: 961340430}
-    - target: {fileID: 3274372622177398661, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
+    - target: {fileID: 7368948691914852139, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: maxDelay
+      value: 1.25
       objectReference: {fileID: 0}
-    - target: {fileID: 1989018060391241420, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
+    - target: {fileID: 2103698699, guid: 2424fb29d83f10e4e8ee6e693e90c3ff, type: 3}
+      propertyPath: money_01
+      value: 
+      objectReference: {fileID: 847222346}
+    - target: {fileID: 2103698699, guid: 2424fb29d83f10e4e8ee6e693e90c3ff, type: 3}
+      propertyPath: money_02
+      value: 
+      objectReference: {fileID: 115059876}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2424fb29d83f10e4e8ee6e693e90c3ff, type: 3}
 --- !u!1 &2103698690 stripped
@@ -372,20 +355,3 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1977453606}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2103698699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103698690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69e520f252e8e254bbfa200478f75a68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  money: []
-  money_01: {fileID: 847222346}
-  money_02: {fileID: 115059876}
-  moneyText: []
-  Relics: 000000000000000000000000
