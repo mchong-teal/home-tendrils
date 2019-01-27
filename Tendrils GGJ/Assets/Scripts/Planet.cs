@@ -25,6 +25,8 @@ public struct PlanetParam
 
 public class Planet: MonoBehaviour
 {
+    public int planetIdx;
+    public float rotation;
     // Refs to Unity components
     public GameObject npcPrefab;
     PointEffector2D gravityEffector;
@@ -33,8 +35,9 @@ public class Planet: MonoBehaviour
     public float rotation;
 
     // Creates a Planet
-    public void InitPlanet(PlanetParam param)
+    public void InitPlanet(int idx, PlanetParam param)
     {
+        this.planetIdx = idx;
         this.transform.position = new Vector3(param.x, param.y, 0);
         this.transform.localScale = new Vector3(Constants.PLAYER_SCALE * param.size, Constants.PLAYER_SCALE * param.size, 0);
 
