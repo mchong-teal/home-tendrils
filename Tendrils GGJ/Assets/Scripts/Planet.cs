@@ -32,8 +32,6 @@ public class Planet: MonoBehaviour
     PointEffector2D gravityEffector;
     GameObject npc;
 
-    public float rotation;
-
     // Creates a Planet
     public void InitPlanet(int idx, PlanetParam param)
     {
