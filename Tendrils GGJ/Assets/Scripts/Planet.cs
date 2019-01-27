@@ -62,7 +62,6 @@ public class Planet: MonoBehaviour
         int rand = Random.Range(0, 1);
         if (rand == 0) { rand = -1; }
         npc.GetComponent<AI_Controller>().PlanetPosition(this.transform.position, this.transform.localScale.x * this.GetComponent<CircleCollider2D>().radius, this.rotation * (float)rand);
-        
     }
 
 }

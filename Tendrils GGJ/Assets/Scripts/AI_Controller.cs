@@ -14,15 +14,19 @@ public class AI_Controller : MonoBehaviour {
     float planetRot;
     float bigWalkNumber;
     Player_Rotation rot;
+    Map_Gen map;
+    int triggerCount;
 
 
     void Start() {
 
+        triggerCount = 0;
         this.transform.localScale = new Vector2(10.0f, 10.0f);
         this.transform.GetChild(0).position = new Vector2(10000, 10000);
         rot = GetComponent<Player_Rotation>();
         planetAngle = 0.0f;
         bigWalkNumber = Mathf.PI * 360;
+        map = GameObject.Find("MapGen").GetComponent<Map_Gen>();
     }
 	
 	
@@ -42,9 +46,12 @@ public class AI_Controller : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision) {
 
-        if (collision.gameObject.tag == "Player") {
+        if (collision.gameObject.tag == "Player" && triggerCount == 0) {
+            Debug.Log("Collision");
             if (collision.gameObject.GetComponent<Character>().isGrounded) {
+
                 GameObject player = collision.gameObject;
+                Upgrade_System ui = GameObject.Find("UI_and_Upgrade_Menu").GetComponent<Upgrade_System>();
 
                 // Text Box
                 Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * (planetRad + 6.0f);
@@ -52,21 +59,22 @@ public class AI_Controller : MonoBehaviour {
 
                 // Connections
                 int inv = player.GetComponent<Character>().inventoryPlanet;
-                Map_Gen map = GetComponentInParent<Map_Gen>();
+
                 if (inv == -1) {
                     // Generate empty inventory text
-                    player.GetComponent<Character>().inventoryPlanet = planetid;
-                    player.GetComponent<Upgrade_System>().DisplayEventMessage("You are not carrying an artifact. Here, take one", player.GetComponent<Character>().playerId);
+                    ui.DisplayEventMessage("You are not carrying an artifact Wanderer.", player.GetComponent<Character>().playerId);
                 }
                 else if (inv > -1 && map.ArePlanetsConnected(planetid, inv)) {
                     // Generate reject text
-                    player.GetComponent<Upgrade_System>().DisplayEventMessage("You have already brought this artifact to us Wanderer.", player.GetComponent<Character>().playerId);
+                    ui.DisplayEventMessage("You have already brought this artifact to us Wanderer.", player.GetComponent<Character>().playerId);
                 }
                 else {
                     // Player has item and it is not current connected to planet
                     // Generate accept text
-                    
+                    player.GetComponent<Character>().ItemAccepted();
+                    ui.DisplayEventMessage("Thank you Wanderer. With this artifact the connections of this galaxy grow stronger.", player.GetComponent<Character>().playerId);
                 }
+                triggerCount = 1;
             }
         }
     }
@@ -75,6 +83,7 @@ public class AI_Controller : MonoBehaviour {
         
         if (collision.gameObject.tag == "Player") {
             transform.GetChild(0).position = new Vector2(10000, 10000);
+            triggerCount = 0;
         }
     }
 }

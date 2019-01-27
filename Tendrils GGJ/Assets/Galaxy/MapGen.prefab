@@ -58,6 +58,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9068466969974617207, guid: 80c8f3822a15105409dabc825d25eba9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 9068466969974617206, guid: 80c8f3822a15105409dabc825d25eba9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -112,10 +117,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1382933904, guid: 80c8f3822a15105409dabc825d25eba9, type: 3}
-      propertyPath: fuelslider
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c8f3822a15105409dabc825d25eba9, type: 3}
