@@ -9,11 +9,19 @@ public class Tether: MonoBehaviour
     int end;
     int owner;
 
-    public void InitTether(int start, int end, int owner)
+    LineRenderer line;
+
+    public void InitTether(int startIdx, int endIdx, int owner, Vector3 startPt, Vector3 endPt)
     {
-        this.start = start;
-        this.end = end;
+        this.start = startIdx;
+        this.end = endIdx;
         this.owner = owner;
+
+        this.line = this.GetComponent<LineRenderer>();
+        Vector3[] pts = new Vector3[2];
+        pts[0] = startPt;
+        pts[1] = endPt;
+        this.line.SetPositions(pts);
     }
     void Start() {
 
