@@ -29,7 +29,7 @@ public class Map_Gen : MonoBehaviour
         int playerId = 0;
         foreach(Character player in players)
         {
-            player.InitCharacter(playerId, galaxy[playerId]);
+            player.InitCharacter(playerId, galaxy[playerId].planetIdx);
         }
     }
 
@@ -39,11 +39,11 @@ public class Map_Gen : MonoBehaviour
         LoadMap.LoadPlanets().ForEach( (PlanetParam pp ) => {
             Planet newPlanet = (Planet) Instantiate(planet);
             newPlanet.InitPlanet(planetId, pp);
-            galaxy.Add(newPlanet);
+            this.galaxy.Add(newPlanet);
         });
    }
 
-   Planet GetPlanet(int idx)
+   public Planet GetPlanet(int idx)
    {
        if (galaxy[idx].planetIdx != idx) {
            throw new UnityException("Planet idx broken");

@@ -23,6 +23,9 @@ public class Character : MonoBehaviour {
     public GameObject ArrowPrefab;
 
     // private variables
+
+    // UI
+
     Rigidbody2D rb;
     Player_Rotation rot;
 
@@ -34,7 +37,7 @@ public class Character : MonoBehaviour {
 
     // Checks
     bool isGrounded;
-    Planet isOnPlanet;
+    int isOnPlanet;
 
     // Fuel System
     Fuel_System fs;
@@ -50,8 +53,8 @@ public class Character : MonoBehaviour {
 
     // Capture stuff
     int playerId;
-    Planet homePlanet;
-    Planet inventoryPlanet; // The planet the player last got an item from
+    int homePlanet;
+    int inventoryPlanet; // The planet the player last got an item from
     Map_Gen galaxy;
     bool tryPickup;
     List<Tether> network; // Going with an edge list representation I guess..
@@ -59,21 +62,24 @@ public class Character : MonoBehaviour {
     string displayMessage;
 
     // Called by Map_Gen on start to create
-    public void InitCharacter(int id, Planet home)
+    public void InitCharacter(int id, int home)
     {
         this.playerId = id;
         this.homePlanet = home;
-        float startX = homePlanet.transform.position.x;
-        float startY = homePlanet.transform.position.y;
+        Planet hp = this.GetPlanet(home);
+        float startX = hp.transform.position.x;
+        float startY = hp.transform.position.y;
         this.transform.position = new Vector3(startX, startY, 0);
     }
     void Start() {
-
         rb = GetComponent<Rigidbody2D>();
         fs = GetComponent<Fuel_System>();
         rot = GetComponent<Player_Rotation>();
         galaxy = GetComponent<Map_Gen>();
         network = new List<Tether>();
+
+        this.isOnPlanet = -1;
+        this.inventoryPlanet = -1;
 
         if (!rb) {
             rb = gameObject.AddComponent<Rigidbody2D>();
@@ -146,11 +152,13 @@ public class Character : MonoBehaviour {
         MoveManager();
         
         AnimatorManager();
+        UIManager();
     }
 
     void ActionManager() {
         if (this.tryPickup) {
             ItemPickupHandler();
+            this.tryPickup = false;
         }
     }
 
@@ -182,9 +190,9 @@ public class Character : MonoBehaviour {
                 planetScale = planet.transform.localScale.x;
                 planetRadiusVector = new Vector2(transform.position.x - planet.transform.position.x, transform.position.y - planet.transform.position.y);
                 planetRotation = planet.GetComponent<Planet>().rotation;
-                if (!isOnPlanet) {
+                if (isOnPlanet < 0) {
                     planetAngle = Mathf.Atan2(planetRadiusVector.y, planetRadiusVector.x);
-                    isOnPlanet = planet.GetComponent<Planet>();
+                    isOnPlanet = planet.GetComponent<Planet>().planetIdx;
                 }
             }
         }
@@ -235,7 +243,7 @@ public class Character : MonoBehaviour {
         rb.AddForce(spaceMovement * spaceSpeed);
         float spaceAngle = Mathf.Atan2(rb.velocity.y, rb.velocity.x);
         planetAngle = 0;
-        isOnPlanet = null;
+        isOnPlanet = -1;
         JetManager();
         rot.SetRotation(spaceAngle - (Mathf.PI / 2));
     }
@@ -258,32 +266,49 @@ public class Character : MonoBehaviour {
         fs.IdleJetForce();
     }
 
+    void UIManager()
+    {
+        if (this.displayMessage != null) {
+            Upgrade_System ui = GameObject.Find("UI_and_Upgrade_Menu").GetComponent<Upgrade_System>();
+            ui.DisplayEventMessage(this.displayMessage, this.playerId);
+            this.displayMessage = null;
+        }
+    }
+
     /** Called when Item pickup
      */
     void ItemPickupHandler() {
-        if (!isOnPlanet) {
+        if (this.isOnPlanet < 0) {
             this.displayMessage = "You need to be on a Planet to pick up an item";
             return;
         }
-        if (inventoryPlanet) {
+        if (this.inventoryPlanet >= 0) {
             this.displayMessage = "You already have an item, press <key> to toss";
             return;
         }
-        if (!this.IsPlanetInNetwork(isOnPlanet.planetIdx)) {
+        if (!this.IsPlanetInNetwork(this.isOnPlanet)) {
             this.displayMessage = "You don't know anyone on this planet";
             return;
         }
+        Debug.Log("pickup");
         animatePickup = true; // TODO Animate;
         this.inventoryPlanet = isOnPlanet;
     }
 
     // Worst case O(2n) search in number of links in network
     bool IsPlanetInNetwork(int idx) {
+        if (this.homePlanet == idx) {
+            return true;
+        }
         foreach (Tether link in this.network) {
             if (link.DoesConnectPlanet(idx)) {
                 return true;
             }
         }
         return false;
+    }
+
+    Planet GetPlanet(int idx) {
+        return GetComponentInParent<Map_Gen>().GetPlanet(idx);
     }
 }
