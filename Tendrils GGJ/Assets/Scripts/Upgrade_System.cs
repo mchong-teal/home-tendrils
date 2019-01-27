@@ -29,7 +29,7 @@ public class Upgrade_System : MonoBehaviour
     void Start()
     {
         costs = new float[2,3];
-        costText = new TextMeshProUGUI[2,3] { {fuelCost_01, forceCost_01, delayCost_01 }, {fuelCost_01, forceCost_02, delayCost_02 } };
+        costText = new TextMeshProUGUI[2,3] { {fuelCost_01, forceCost_01, delayCost_01 }, {fuelCost_02, forceCost_02, delayCost_02 } };
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 3; j++) {
                 costs[i,j] = 100.0f;
@@ -70,9 +70,9 @@ public class Upgrade_System : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad7) && upgradeSystemActive == true&&player2.GetComponent<Money_System>().money[1]>=costs[1,0])
         {
             player2.GetComponent<Money_System>().loseMoney(costs[1,0], 1);
-            costs[0,1] += 100.0f;
+            costs[1,0] += 100.0f;
             player2.GetComponent<Fuel_System>().upgradeMaxFuel();
-            costText[0,1].text = "FuelCost " + costs[0,1];
+            costText[1,0].text = "FuelCost " + costs[1,0];
 
         }
         if (Input.GetKeyDown(KeyCode.K) && upgradeSystemActive == true && player1.GetComponent<Money_System>().money[0] >= costs[0,1])

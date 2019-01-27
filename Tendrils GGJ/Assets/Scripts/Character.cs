@@ -63,10 +63,11 @@ public class Character : MonoBehaviour {
     {
         this.playerId = id;
         Planet hp = this.GetPlanet(home);
-        float startX = hp.transform.position.x + 1;
-        float startY = hp.transform.position.y;
+        float startX = hp.transform.position.x + (hp.transform.localScale.x * hp.GetComponent<CircleCollider2D>().radius);
+        float startY = hp.transform.position.y + (hp.transform.localScale.y * hp.GetComponent<CircleCollider2D>().radius);
         this.transform.position = new Vector3(startX, startY, 0);
     }
+
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         fs = GetComponent<Fuel_System>();
