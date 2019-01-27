@@ -246,7 +246,7 @@ public class Character : MonoBehaviour {
     }
 
     void SpaceMoveManager() {
-        spaceAngle -= dx * Time.deltaTime;
+        spaceAngle -= dx * Time.deltaTime * 4.0f;
         planetAngle = 0;
         isOnPlanet = -1;
         rot.SetRotation(spaceAngle - (Mathf.PI / 2));

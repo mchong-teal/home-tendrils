@@ -334,6 +334,11 @@ PrefabInstance:
       propertyPath: fuelslider
       value: 
       objectReference: {fileID: 961340430}
+    - target: {fileID: 7368948691914852139, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
+        type: 3}
+      propertyPath: maxDelay
+      value: 1.25
+      objectReference: {fileID: 0}
     - target: {fileID: 2103698699, guid: 2424fb29d83f10e4e8ee6e693e90c3ff, type: 3}
       propertyPath: money_01
       value: 
