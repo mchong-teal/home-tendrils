@@ -189,16 +189,6 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1695908087808872957, guid: 0300edb66498fb649a4986df8fb6bd8b,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695908087808872957, guid: 0300edb66498fb649a4986df8fb6bd8b,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1695908088190959592, guid: 0300edb66498fb649a4986df8fb6bd8b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -226,18 +216,6 @@ PrefabInstance:
       objectReference: {fileID: 2103698690}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0300edb66498fb649a4986df8fb6bd8b, type: 3}
---- !u!114 &115059876 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1695908087808872957, guid: 0300edb66498fb649a4986df8fb6bd8b,
-    type: 3}
-  m_PrefabInstance: {fileID: 92510452}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &847222346 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1695908088376147768, guid: 0300edb66498fb649a4986df8fb6bd8b,
@@ -334,19 +312,10 @@ PrefabInstance:
       propertyPath: fuelslider
       value: 
       objectReference: {fileID: 961340430}
-    - target: {fileID: 7368948691914852139, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
-        type: 3}
-      propertyPath: maxDelay
-      value: 1.25
-      objectReference: {fileID: 0}
     - target: {fileID: 2103698699, guid: 2424fb29d83f10e4e8ee6e693e90c3ff, type: 3}
       propertyPath: money_01
       value: 
       objectReference: {fileID: 847222346}
-    - target: {fileID: 2103698699, guid: 2424fb29d83f10e4e8ee6e693e90c3ff, type: 3}
-      propertyPath: money_02
-      value: 
-      objectReference: {fileID: 115059876}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2424fb29d83f10e4e8ee6e693e90c3ff, type: 3}
 --- !u!1 &2103698690 stripped
