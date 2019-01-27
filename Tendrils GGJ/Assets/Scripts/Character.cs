@@ -14,7 +14,7 @@ public class Character : MonoBehaviour {
     // Checks
     [Range(0, 10)]
     public float groundCheckRadius;
-    [Range(150, 750)]
+    [Range(500, 2000)]
     public float planetCheckRadius;
     public Transform groundCheck;
     public LayerMask isGroundLayer;
@@ -165,6 +165,16 @@ public class Character : MonoBehaviour {
             ItemPickupHandler();
             this.tryPickup = false;
         }
+        if (this.drop) {
+            if (this.inventoryPlanet >= 0) {
+                this.inventoryPlanet = -1;
+                this.displayMessage = "You have dropped your artifact.";
+            }
+            else {
+                this.displayMessage = "You have no artifact to drop";
+            }
+            this.drop = false;
+        }
     }
 
     void MoveManager() {
@@ -223,7 +233,7 @@ public class Character : MonoBehaviour {
                 y = (unitvector.y * Camera.main.orthographicSize / 1.25f) + transform.position.y;
 
                 float angle_ = Mathf.Atan2(unitvector.y, unitvector.x) * Mathf.Rad2Deg;
-                Quaternion rot = Quaternion.Euler(new Vector3(0.0f, 0.0f, angle_ + 90.0f));
+                Quaternion rot = Quaternion.Euler(new Vector3(0.0f, 0.0f, angle_ - 90.0f));
 
                 GameObject arrow;
                 arrow = Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), rot);
@@ -246,7 +256,7 @@ public class Character : MonoBehaviour {
     }
 
     void SpaceMoveManager() {
-        spaceAngle -= dx * Time.deltaTime;
+        spaceAngle -= dx * Time.deltaTime * 4.0f;
         planetAngle = 0;
         isOnPlanet = -1;
         rot.SetRotation(spaceAngle - (Mathf.PI / 2));
@@ -307,6 +317,7 @@ public class Character : MonoBehaviour {
             this.displayMessage = "You don't know anyone on this planet";
             return;
         }
+        
         this.displayMessage = "You have collected a souvenir from this world";
         animatePickup = true; // TODO Animate;
         this.inventoryPlanet = isOnPlanet;

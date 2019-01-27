@@ -12,7 +12,7 @@ public struct PlanetParam
    public float rotation;
    public string spriteImage;
 
-   public PlanetParam(int x, int y, int size, int gravity, float rotation, string spriteImage) 
+   public PlanetParam(int x, int y, int size, int gravity, float rotation, string spriteImage)
    {
        this.x = x;
        this.y = y;
@@ -57,16 +57,18 @@ public class Planet: MonoBehaviour
         // Gravity
         this.gravityEffector = GetComponentInChildren<PointEffector2D>();
         float adjustedGrav = Constants.PLANET_GRAV_BASE - param.gravity*100;
-        adjustedGrav = adjustedGrav*((0.4f + (0.1f * planetRadius))/1);
-        Debug.Log(planetRadius);
-        Debug.Log(adjustedGrav);
+        adjustedGrav = adjustedGrav*((0.2f + (0.2f * planetRadius))/1);
         this.gravityEffector.forceMagnitude = adjustedGrav;
         this.rotation = param.rotation;
 
         // NPCs
-        npc = (AI_Controller) Instantiate(npcPrefab, this.transform.position + (Vector3.up * this.transform.localScale.x), Quaternion.identity);
+        npc = (AI_Controller)Instantiate(npcPrefab, this.transform.position + (Vector3.up * this.transform.localScale.x), Quaternion.identity);
         npc.planetid = idx;
         npc.walkSpeed = Random.Range(1.0f, 1.5f);
+        int rand = Random.Range(0, 1);
+        if (rand == 0) { rand = -1; }
+        npc.PlanetPosition(this.transform.position, this.transform.localScale.x * this.groundCollider.radius, this.rotation);
+        npc.x = rand;
     }
 
 
