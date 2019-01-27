@@ -26,7 +26,6 @@ public struct PlanetParam
 public class Planet: MonoBehaviour
 {
     public int planetIdx;
-    public float rotation;
     // Refs to Unity components
     public GameObject npcPrefab;
     PointEffector2D gravityEffector;
