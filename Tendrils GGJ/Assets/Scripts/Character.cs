@@ -276,7 +276,7 @@ public class Character : MonoBehaviour {
             return;
         }
         if (this.inventoryPlanet >= 0) {
-            this.displayMessage = "You already have an item, press <key> to toss";
+            this.displayMessage = "You already have an item, press <key> on a planet you know to toss";
             return;
         }
         if (!this.galaxy.IsPlanetInNetwork(this.playerId, this.isOnPlanet)) {
