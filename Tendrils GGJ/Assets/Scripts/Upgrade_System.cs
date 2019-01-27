@@ -42,12 +42,7 @@ public class Upgrade_System : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
-       
-        if (Input.GetKeyDown(KeyCode.P)) {
-=======
        if (Input.GetKeyDown(KeyCode.P)) {
->>>>>>> e6d90bfd1b2e3f01eff54504e120325bf944e379
             if (upgradeSystemActive == false)
             {
                 upgradeSystemActive = true;
