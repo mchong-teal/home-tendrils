@@ -19,7 +19,7 @@ public static class LoadMap {
 
         try
         {
-            TextAsset mapData = Resources.Load("map") as TextAsset;
+            TextAsset mapData = Resources.Load("testmap") as TextAsset;
             List<string> planetData = new List<string>(mapData.text.Split('\n'));
             planetData.RemoveAt(0); //Remove header line
             foreach(string planetLine in planetData) {
@@ -51,6 +51,6 @@ public static class LoadMap {
     }
 
     private static float newPlanetRotation() {
-        return UnityEngine.Random.Range(0.01f, 0.05f);
+        return UnityEngine.Random.Range(0.001f, 0.005f);
     }
 }
