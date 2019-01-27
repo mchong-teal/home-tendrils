@@ -33,6 +33,7 @@ public class Character : MonoBehaviour {
     bool jf;
     bool jump;
     float spaceAngle;
+    SpriteRenderer sr;
 
     // Checks
     public bool isGrounded;
@@ -111,6 +112,8 @@ public class Character : MonoBehaviour {
 
         isGrounded = false;
         spaceAngle = 0.0f;
+
+        sr = GetComponent<SpriteRenderer>();
     }
 	
 	void AnimatorManager()
@@ -141,6 +144,19 @@ public class Character : MonoBehaviour {
         MoveManager();
         AnimatorManager();
         UIManager();
+        Flip();
+    }
+
+    void Flip()
+    {
+        if (dx < 0)
+        {
+            sr.flipX = true;
+        }
+        else if(dx > 0)
+        {
+            sr.flipX = false;
+        }
     }
 
     void ActionManager() {
