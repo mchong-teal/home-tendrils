@@ -33,6 +33,7 @@ public class Planet: MonoBehaviour
     CircleCollider2D circleCollider;
     AI_Controller npc;
     CircleCollider2D AtmosphereCollider;
+    SpriteRenderer planetSprite;
 
     // Atmosphere Handling
     GameObject BG;
@@ -53,9 +54,9 @@ public class Planet: MonoBehaviour
         this.gravityEffector.forceMagnitude = param.gravity;
         this.rotation = param.rotation;
 
-        SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
+        this.planetSprite = this.GetComponent<SpriteRenderer>();
         Sprite s = Resources.Load<Sprite>(param.spriteImage);
-        sr.sprite = s;
+        this.planetSprite.sprite = s;
         circleCollider.radius = s.bounds.size.x/2 - .1f;
 
         // NPCs
@@ -77,7 +78,7 @@ public class Planet: MonoBehaviour
         transform.Rotate(0, 0, this.rotation);
         int rand = Random.Range(0, 1);
         if (rand == 0) { rand = -1; }
-	npc.PlanetPosition(this.transform.position, this.transform.localScale.x * this.circleCollider.radius, this.rotation * (float)rand);
+        npc.PlanetPosition(this.transform.position, this.transform.localScale.x * this.circleCollider.radius, this.rotation * (float)rand);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
