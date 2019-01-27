@@ -52,4 +52,15 @@ public class Map_Gen : MonoBehaviour
        }
        return galaxy[idx];
    }
+
+   public bool ArePlanetsConnected(int p1Idx, int p2Idx)
+   {
+       //TODO
+       return false;
+   }
+
+   public void ConnectPlanets(int p1Idx, int p2Idx)
+   {
+       //TODO
+   }
 }
