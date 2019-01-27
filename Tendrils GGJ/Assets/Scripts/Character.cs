@@ -34,7 +34,7 @@ public class Character : MonoBehaviour {
     bool jump;
 
     // Checks
-    bool isGrounded;
+    public bool isGrounded;
     int isOnPlanet;
 
     // Fuel System
@@ -290,5 +290,11 @@ public class Character : MonoBehaviour {
 
     Planet GetPlanet(int idx) {
         return GetComponentInParent<Map_Gen>().GetPlanet(idx);
+    }
+
+    public void ItemAccepted()
+    {
+        this.galaxy.ConnectPlanets(this.isOnPlanet, this.inventoryPlanet, this.playerId);
+        this.inventoryPlanet = -1;
     }
 }
