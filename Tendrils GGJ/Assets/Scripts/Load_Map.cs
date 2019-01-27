@@ -19,7 +19,7 @@ public static class LoadMap {
 
         try
         {
-            TextAsset mapData = Resources.Load("testmap") as TextAsset;
+            TextAsset mapData = Resources.Load("map") as TextAsset;
             List<string> planetData = new List<string>(mapData.text.Split('\n'));
             planetData.RemoveAt(0); //Remove header line
             foreach(string planetLine in planetData) {
