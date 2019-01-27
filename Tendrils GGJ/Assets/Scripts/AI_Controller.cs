@@ -14,7 +14,6 @@ public class AI_Controller : MonoBehaviour {
     float bigWalkNumber;
 
 
-
     void Start() {
 
         planetAngle = 0.0f;
