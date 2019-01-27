@@ -46,6 +46,7 @@ public class Planet: MonoBehaviour
 
         // NPCs
         npc = (GameObject)Instantiate(npcPrefab, this.transform.position + (Vector3.up * this.transform.localScale.x), Quaternion.identity);
+        npc.GetComponent<AI_Controller>().planetid = idx;
     }
 
 

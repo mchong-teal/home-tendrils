@@ -5,6 +5,7 @@ using UnityEngine;
 public class AI_Controller : MonoBehaviour {
 
     // public variables 
+    public float planetid;
 
     // private variables
     float planetAngle;
@@ -17,6 +18,7 @@ public class AI_Controller : MonoBehaviour {
 
     void Start() {
 
+        this.transform.localScale = new Vector2(10.0f, 10.0f);
         rot = GetComponent<Player_Rotation>();
         planetAngle = 0.0f;
         bigWalkNumber = Mathf.PI * 360;
@@ -35,5 +37,9 @@ public class AI_Controller : MonoBehaviour {
         this.planetPos = planetPos_;
         this.planetRad = planetRad_;
         this.planetRot = planetRot_;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) {
+            
     }
 }
