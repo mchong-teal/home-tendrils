@@ -2228,7 +2228,7 @@ MonoBehaviour:
   eventText: {fileID: 1695908088899880174}
   textOn: 0
   textTime: 0
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 470981266}
 --- !u!1 &1695908088411325018
 GameObject:
   m_ObjectHideFlags: 0
