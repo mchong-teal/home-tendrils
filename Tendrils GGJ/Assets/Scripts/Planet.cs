@@ -32,6 +32,11 @@ public class Planet: MonoBehaviour
     PointEffector2D gravityEffector;
     CircleCollider2D circleCollider;
     AI_Controller npc;
+    CircleCollider2D AtmosphereCollider;
+
+    // Atmosphere Handling
+    GameObject BG;
+    Animator fadeanim;
 
     // Creates a Planet
     public void InitPlanet(int idx, PlanetParam param)
@@ -41,6 +46,7 @@ public class Planet: MonoBehaviour
         this.circleCollider = this.GetComponent<CircleCollider2D>();
         Vector3 planetSize = new Vector3(10, 10, 0);
         this.transform.localScale = planetSize;
+
 
         // Gravity
         this.gravityEffector = GetComponentInChildren<PointEffector2D>();
@@ -61,6 +67,8 @@ public class Planet: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        BG = GameObject.Find("PlanetBG");
+        fadeanim = BG.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -70,6 +78,21 @@ public class Planet: MonoBehaviour
         int rand = Random.Range(0, 1);
         if (rand == 0) { rand = -1; }
 	npc.PlanetPosition(this.transform.position, this.transform.localScale.x * this.circleCollider.radius, this.rotation * (float)rand);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.name == "Player"){
+            fadeanim.SetBool("Fade", true);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.name == "Player")
+        {
+            fadeanim.SetBool("Fade", false);
+        }
     }
 
 }

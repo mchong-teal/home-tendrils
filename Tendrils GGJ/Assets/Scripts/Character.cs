@@ -221,6 +221,7 @@ public class Character : MonoBehaviour {
         rb.velocity = Vector2.zero;
         planetAngle -= (((dx * planetSpeed) + planetRotation) * Mathf.PI * 720) / (Mathf.PI * Mathf.Pow(planetRadius * planetScale, 2));
         Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * ((planetRadius * planetScale) + 2.0f);
+        Debug.Log(offset);
         transform.position = planetCenter + offset;
         JetManager();
         rot.SetRotation(planetAngle - (Mathf.PI / 2));
@@ -252,6 +253,7 @@ public class Character : MonoBehaviour {
             fs.UseJetForce();
             rb.AddForce(dirVec * fs.jetForce * 4, ForceMode2D.Impulse);
             fs.JetOn = true;
+
         }
         else { fs.JetOn = false; }
         fs.IdleJetForce();
