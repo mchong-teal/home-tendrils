@@ -25,7 +25,7 @@ public class AI_Controller : MonoBehaviour {
         this.transform.GetChild(0).position = new Vector2(10000, 10000);
         rot = GetComponent<Player_Rotation>();
         planetAngle = 0.0f;
-        bigWalkNumber = Mathf.PI * 360;
+        bigWalkNumber = Mathf.PI * 360 * 2;
         map = GameObject.Find("MapGen").GetComponent<Map_Gen>();
     }
 	

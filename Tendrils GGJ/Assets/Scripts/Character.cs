@@ -168,7 +168,7 @@ public class Character : MonoBehaviour {
     void GroundCheck() {
 
         if (groundCheck) {
-            Vector2 size = new Vector2(groundCheckRadius / 2.5f, groundCheckRadius);
+            Vector2 size = new Vector2(groundCheckRadius / 2.0f, groundCheckRadius);
             isGrounded = Physics2D.OverlapCapsule(groundCheck.position, size, CapsuleDirection2D.Vertical, (planetAngle * Mathf.Rad2Deg) - 90.0f, isGroundLayer);
             if (isGrounded) {
                 Collider2D planet = Physics2D.OverlapCapsule(groundCheck.position, size, CapsuleDirection2D.Vertical, (planetAngle * Mathf.Rad2Deg) - 90.0f, isGroundLayer);
@@ -245,7 +245,7 @@ public class Character : MonoBehaviour {
             ///Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
             Vector3 dirVec = new Vector3(transform.position.x - planetCenter.x, transform.position.y - planetCenter.y, 0.0f).normalized;
             fs.UseJetForce();
-            rb.AddForce(dirVec * fs.jetForce * 2, ForceMode2D.Impulse);
+            rb.AddForce(dirVec * fs.jetForce * 4, ForceMode2D.Impulse);
             fs.JetOn = true;
         }
         else { fs.JetOn = false; }

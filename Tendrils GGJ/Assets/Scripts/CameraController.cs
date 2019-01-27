@@ -16,15 +16,13 @@ public class CameraController : MonoBehaviour {
             target = GameObject.Find("Player").GetComponent<Transform>();
         }
 
-        transform.position = target.position;
-        offset = Vector2.Lerp(transform.position, target.position, 0.1f);
 
-        ///offset = new Vector3(, 0.0f, transform.position.z);
+        offset = new Vector3(-target.GetComponent<Rigidbody2D>().velocity.x, -target.GetComponent<Rigidbody2D>().velocity.y, transform.position.z);
     }
 	
 	
     void Update() {
 
-        transform.position = offset;
+        transform.position = target.position + offset;
     }
 }
