@@ -57,7 +57,7 @@ public class Planet: MonoBehaviour
         // Gravity
         this.gravityEffector = GetComponentInChildren<PointEffector2D>();
         float adjustedGrav = Constants.PLANET_GRAV_BASE - param.gravity*100;
-        adjustedGrav = adjustedGrav*((0.4f + (0.1f * planetRadius))/1);
+        adjustedGrav = adjustedGrav*((0.2f + (0.2f * planetRadius))/1);
         Debug.Log(planetRadius);
         Debug.Log(adjustedGrav);
         this.gravityEffector.forceMagnitude = adjustedGrav;
