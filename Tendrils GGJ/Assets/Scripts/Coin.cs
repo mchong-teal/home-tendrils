@@ -11,7 +11,7 @@ public class Coin : MonoBehaviour
     {
         if(Value<=0)
         {
-            Value = 1.0f;
+            Value = 5.0f;
         }
     }
     void OnTriggerEnter2D(Collider2D other)

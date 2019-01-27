@@ -33,6 +33,8 @@ public class Character : MonoBehaviour {
     bool brakes;
     bool jump;
     bool drop;
+    bool esc;
+    int escCount;
     float spaceAngle;
     SpriteRenderer sr;
 
@@ -113,6 +115,7 @@ public class Character : MonoBehaviour {
 
         isGrounded = false;
         spaceAngle = 0.0f;
+        escCount = 0;
 
         sr = GetComponent<SpriteRenderer>();
     }
@@ -195,6 +198,17 @@ public class Character : MonoBehaviour {
         brakes = Input.GetButton("Fire1");
         tryPickup = Input.GetButtonDown("Fire2");
         drop = Input.GetButtonDown("Fire3");
+        esc = Input.GetButton("Cancel");
+
+        if (esc) {
+            this.displayMessage = "Hold esc to exit";
+            escCount ++;
+            if (escCount > 150) {
+                Application.Quit();
+                Debug.Log("Exit");
+            }
+        }
+        else { escCount = 0; }
     }
 
     void GroundCheck() {
@@ -265,9 +279,9 @@ public class Character : MonoBehaviour {
         rot.SetRotation(spaceAngle - (Mathf.PI / 2));
         JetManager();
 
-        if (Mathf.Abs(this.transform.position.x) > 1500 || Mathf.Abs(this.transform.position.y) > 1500) {
-            this.displayMessage = "Press Shift to deploy Space brakes";
-        }
+        //if (Mathf.Abs(this.transform.position.x) > 1500 || Mathf.Abs(this.transform.position.y) > 1500) {
+        //    this.displayMessage = "Press Shift to deploy Space brakes";
+        //}
     }
 
     void JetManager() {
