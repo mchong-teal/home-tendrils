@@ -8,12 +8,14 @@ public class Map_Gen : MonoBehaviour
     List<List<Tether>> networks = new List<List<Tether>>();
     public Planet planet;
     public Tether tether;
+    public SuperMassive superM;
     // List<PlanetPr> directionArrows;
     // Start is called before the first frame update
     void Start()
     {
         this.GenerateMap();
         this.InitPlayers();
+        this.AddSuperMassives();
     }
 
     // Update is called once per frame
@@ -49,6 +51,19 @@ public class Map_Gen : MonoBehaviour
             this.galaxy.Add(newPlanet);
             planetId++;
         });
+   }
+
+   void AddSuperMassives()
+   {
+       for (int i = 0; i < 10; i++) {
+           for (int j = 0; j < 10; j++) {
+               int size = Random.Range(1, 4);
+               float posX = Random.Range(0, 100) + i * 100;
+               float posY = Random.Range(0, 100) + j * 100;
+               SuperMassive newSuper = (SuperMassive) Instantiate(superM);
+               newSuper.InitSuperMassive(posX, posY, size, -25);
+           }
+       }
    }
 
    public Planet GetPlanet(int idx)

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planet: {fileID: 3811896151561460275, guid: 3c1ffc8085128154bae32719dd8b331c, type: 3}
   tether: {fileID: 6688697559119056180, guid: d23d9505bdf71284e9cb2349b58035ad, type: 3}
+  superM: {fileID: 1718107660892132946, guid: fd97489cef5c42b47a2e9ee0f152e79a, type: 3}
 --- !u!1001 &7368948690608186043
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 1727778850}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +157,6 @@ MonoBehaviour:
   isGroundLayer:
     serializedVersion: 2
     m_Bits: 256
-  anim: {fileID: 5418722362761809214}
   ArrowPrefab: {fileID: 5535807049625192390, guid: 3d6c7c2b611e7cb4daa7899851969abe,
     type: 3}
   isGrounded: 0
