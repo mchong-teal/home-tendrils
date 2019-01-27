@@ -67,6 +67,11 @@ public class Fuel_System : MonoBehaviour {
         fuel -= fuelTick;
     }
 
+    public void UseJetForce(bool jf) {
+        delay = maxDelay;
+        fuel -= fuel;
+    }
+
     public void IdleJetForce() {
         if (JetOn == false) { //recharge for fuel
             delay -= Time.deltaTime;

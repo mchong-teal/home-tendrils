@@ -5,15 +5,23 @@ using UnityEngine;
 public class Tether: MonoBehaviour
 {
     // I don't think start/end have any meaning for now
-    Planet start;
-    Planet end;
-    Character owner;
+    int start;
+    int end;
+    int owner;
 
-    public void InitTether(Planet start, Planet end, Character owner)
+    LineRenderer line;
+
+    public void InitTether(int startIdx, int endIdx, int owner, Vector3 startPt, Vector3 endPt)
     {
-        this.start = start;
-        this.end = end;
+        this.start = startIdx;
+        this.end = endIdx;
         this.owner = owner;
+
+        this.line = this.GetComponent<LineRenderer>();
+        Vector3[] pts = new Vector3[2];
+        pts[0] = startPt;
+        pts[1] = endPt;
+        this.line.SetPositions(pts);
     }
     void Start() {
 
@@ -24,7 +32,7 @@ public class Tether: MonoBehaviour
     }
 
     public bool DoesConnectPlanet(int idx) {
-        if((start.planetIdx == idx) || (end.planetIdx == idx)) {
+        if((start == idx) || (end == idx)) {
             return true;
         }
         return false;

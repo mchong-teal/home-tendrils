@@ -14,7 +14,7 @@ public class Character : MonoBehaviour {
     // Checks 
     [Range(0, 10)]
     public float groundCheckRadius;
-    [Range(50, 250)]
+    [Range(150, 750)]
     public float planetCheckRadius;
     public Transform groundCheck;
     public LayerMask isGroundLayer;
@@ -23,17 +23,20 @@ public class Character : MonoBehaviour {
     public GameObject ArrowPrefab;
 
     // private variables
+
     Rigidbody2D rb;
+    Player_Rotation rot;
 
     // Input Checks
     float dx;
     float dy;
     bool jf;
     bool jump;
+    float spaceAngle;
 
     // Checks
-    bool isGrounded;
-    Planet isOnPlanet;
+    public bool isGrounded;
+    int isOnPlanet;
 
     // Fuel System
     Fuel_System fs;
@@ -48,30 +51,31 @@ public class Character : MonoBehaviour {
     Animator anim;
 
     // Capture stuff
-    int playerId;
-    Planet homePlanet;
-    Planet inventoryPlanet; // The planet the player last got an item from
+    public int playerId;
+    public int inventoryPlanet; // The planet the player last got an item from
     Map_Gen galaxy;
     bool tryPickup;
-    List<Tether> network; // Going with an edge list representation I guess..
     bool animatePickup;
     string displayMessage;
 
     // Called by Map_Gen on start to create
-    public void InitCharacter(int id, Planet home)
+    public void InitCharacter(int id, int home)
     {
         this.playerId = id;
-        this.homePlanet = home;
-        float startX = homePlanet.transform.position.x;
-        float startY = homePlanet.transform.position.y;
+        Planet hp = this.GetPlanet(home);
+        float startX = hp.transform.position.x + (hp.transform.localScale.x * hp.GetComponent<CircleCollider2D>().radius);
+        float startY = hp.transform.position.y + (hp.transform.localScale.y * hp.GetComponent<CircleCollider2D>().radius);
         this.transform.position = new Vector3(startX, startY, 0);
     }
-    void Start() {
 
+    void Start() {
         rb = GetComponent<Rigidbody2D>();
         fs = GetComponent<Fuel_System>();
-        galaxy = GetComponent<Map_Gen>();
-        network = new List<Tether>();
+        rot = GetComponent<Player_Rotation>();
+        galaxy = GetComponentInParent<Map_Gen>();
+
+        this.isOnPlanet = -1;
+        this.inventoryPlanet = -1;
 
         if (!rb) {
             rb = gameObject.AddComponent<Rigidbody2D>();
@@ -97,14 +101,6 @@ public class Character : MonoBehaviour {
             groundCheck = GameObject.Find("GroundCheck").GetComponent<Transform>();
         }
 
-        if (groundCheckRadius <= 0) {
-            groundCheckRadius = 0.1f;
-        }
-
-        if (planetCheckRadius <= 10) {
-            planetCheckRadius = 10;
-        }
-
         anim = GetComponent<Animator>();
         
         if (!anim)
@@ -114,6 +110,7 @@ public class Character : MonoBehaviour {
         }
 
         isGrounded = false;
+        spaceAngle = 0.0f;
     }
 	
 	void AnimatorManager()
@@ -143,11 +140,13 @@ public class Character : MonoBehaviour {
         ActionManager();
         MoveManager();
         AnimatorManager();
+        UIManager();
     }
 
     void ActionManager() {
         if (this.tryPickup) {
             ItemPickupHandler();
+            this.tryPickup = false;
         }
     }
 
@@ -170,18 +169,18 @@ public class Character : MonoBehaviour {
     void GroundCheck() {
 
         if (groundCheck) {
-            Vector2 size = new Vector2(groundCheckRadius / 2.5f, groundCheckRadius);
-            isGrounded = Physics2D.OverlapCapsule(groundCheck.position, size, CapsuleDirection2D.Vertical, 0.0f, isGroundLayer);
+            Vector2 size = new Vector2(groundCheckRadius / 2.0f, groundCheckRadius);
+            isGrounded = Physics2D.OverlapCapsule(groundCheck.position, size, CapsuleDirection2D.Vertical, (planetAngle * Mathf.Rad2Deg) - 90.0f, isGroundLayer);
             if (isGrounded) {
-                Collider2D planet = Physics2D.OverlapCapsule(groundCheck.position, size, CapsuleDirection2D.Vertical, 0.0f, isGroundLayer);
+                Collider2D planet = Physics2D.OverlapCapsule(groundCheck.position, size, CapsuleDirection2D.Vertical, (planetAngle * Mathf.Rad2Deg) - 90.0f, isGroundLayer);
                 planetCenter = planet.transform.position;
                 planetRadius = planet.GetComponent<CircleCollider2D>().radius;
                 planetScale = planet.transform.localScale.x;
                 planetRadiusVector = new Vector2(transform.position.x - planet.transform.position.x, transform.position.y - planet.transform.position.y);
                 planetRotation = planet.GetComponent<Planet>().rotation;
-                if (!isOnPlanet) {
+                if (isOnPlanet < 0) {
                     planetAngle = Mathf.Atan2(planetRadiusVector.y, planetRadiusVector.x);
-                    isOnPlanet = planet.GetComponent<Planet>();
+                    isOnPlanet = planet.GetComponent<Planet>().planetIdx;
                 }
             }
         }
@@ -218,68 +217,82 @@ public class Character : MonoBehaviour {
         }
     }
 
-
     void PlanetMoveManager() {
         rb.velocity = Vector2.zero;
-        planetAngle -= (((dx * planetSpeed) + planetRotation) * 360) / (Mathf.PI * Mathf.Pow(planetRadius * planetScale, 2));
-        Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * ((planetRadius * planetScale) + 1.2f);
+        planetAngle -= (((dx * planetSpeed) + planetRotation) * Mathf.PI * 720) / (Mathf.PI * Mathf.Pow(planetRadius * planetScale, 2));
+        Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * ((planetRadius * planetScale) + 2.0f);
         transform.position = planetCenter + offset;
         JetManager();
+        rot.SetRotation(planetAngle - (Mathf.PI / 2));
+        spaceAngle = planetAngle;
     }
 
     void SpaceMoveManager() {
-        Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
-        rb.AddForce(spaceMovement * spaceSpeed);
+        spaceAngle -= dx * Time.deltaTime;
         planetAngle = 0;
-        isOnPlanet = null;
+        isOnPlanet = -1;
+        rot.SetRotation(spaceAngle - (Mathf.PI / 2));
         JetManager();
     }
 
     void JetManager() {
-        if (jf && !isGrounded) {
-            Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
+        if (!isGrounded && dy != 0) {
+            Vector3 spaceMovement = new Vector3(dy * Mathf.Cos(spaceAngle), Mathf.Sin(dy * spaceAngle), 0.0f);
             fs.UseJetForce();
             rb.AddForce(spaceMovement * fs.jetForce, ForceMode2D.Force);
             fs.JetOn = true;
         }
+        else if (!isGrounded && jf) {
+            rb.velocity = Vector3.zero;
+            fs.UseJetForce(jf);
+        }
         else if (jump && isGrounded) {
             ///Vector3 spaceMovement = new Vector3(dx, dy, 0.0f);
-            Vector2 dirVec = new Vector2(transform.position.x - planetCenter.x, transform.position.y - planetCenter.y).normalized;
-            Vector3 spaceMovement = new Vector3(dirVec.x, dirVec.y, 0.0f);
+            Vector3 dirVec = new Vector3(transform.position.x - planetCenter.x, transform.position.y - planetCenter.y, 0.0f).normalized;
             fs.UseJetForce();
-            rb.AddForce(spaceMovement * fs.jetForce * 2, ForceMode2D.Impulse);
+            rb.AddForce(dirVec * fs.jetForce * 4, ForceMode2D.Impulse);
             fs.JetOn = true;
         }
         else { fs.JetOn = false; }
         fs.IdleJetForce();
     }
 
+    void UIManager()
+    {
+        if (this.displayMessage != null) {
+            Upgrade_System ui = GameObject.Find("UI_and_Upgrade_Menu").GetComponent<Upgrade_System>();
+            ui.DisplayEventMessage(this.displayMessage, this.playerId);
+            this.displayMessage = null;
+        }
+    }
+
     /** Called when Item pickup
      */
     void ItemPickupHandler() {
-        if (!isOnPlanet) {
+        if (this.isOnPlanet < 0) {
             this.displayMessage = "You need to be on a Planet to pick up an item";
             return;
         }
-        if (inventoryPlanet) {
-            this.displayMessage = "You already have an item, press <key> to toss";
+        if (this.inventoryPlanet >= 0) {
+            this.displayMessage = "You already have an item, press <key> on a planet you know to toss";
             return;
         }
-        if (!this.IsPlanetInNetwork(isOnPlanet.planetIdx)) {
+        if (!this.galaxy.IsPlanetInNetwork(this.playerId, this.isOnPlanet)) {
             this.displayMessage = "You don't know anyone on this planet";
             return;
         }
+        Debug.Log("pickup");
         animatePickup = true; // TODO Animate;
         this.inventoryPlanet = isOnPlanet;
     }
 
-    // Worst case O(2n) search in number of links in network
-    bool IsPlanetInNetwork(int idx) {
-        foreach (Tether link in this.network) {
-            if (link.DoesConnectPlanet(idx)) {
-                return true;
-            }
-        }
-        return false;
+    Planet GetPlanet(int idx) {
+        return GetComponentInParent<Map_Gen>().GetPlanet(idx);
+    }
+
+    public void ItemAccepted()
+    {
+        this.galaxy.ConnectPlanets(this.isOnPlanet, this.inventoryPlanet, this.playerId);
+        this.inventoryPlanet = -1;
     }
 }
