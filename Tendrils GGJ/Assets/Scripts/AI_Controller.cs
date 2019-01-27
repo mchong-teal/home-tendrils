@@ -36,9 +36,9 @@ public class AI_Controller : MonoBehaviour {
 	
     void Update() {
         
-        if (dirCount > Random.Range(700, 1400)) {
-            x *= -1;
-            dirCount = 0;
+        if (this.dirCount > Random.Range(700, 1400)) {
+            this.x *= -1;
+            this.dirCount = 0;
         }
 
         if (planetRot < 0) {
@@ -47,11 +47,11 @@ public class AI_Controller : MonoBehaviour {
         else {
             this.GetComponent<SpriteRenderer>().flipX = false;
         }
-        planetAngle -= (((x * walkSpeed) - planetRot) * bigWalkNumber) / (Mathf.PI * Mathf.Pow(planetRad, 2));
+        this.planetAngle -= (((x * walkSpeed) - planetRot) * bigWalkNumber) / (Mathf.PI * Mathf.Pow(planetRad, 2));
         Vector2 offset = new Vector2(Mathf.Cos(planetAngle), Mathf.Sin(planetAngle)) * (planetRad + 2.0f);
         this.transform.position = planetPos + offset;
-        rot.SetRotation(planetAngle - (Mathf.PI / 2));
-        dirCount++;
+        this.rot.SetRotation(planetAngle - (Mathf.PI / 2));
+        this.dirCount++;
     }
 
     public void PlanetPosition(Vector2 planetPos_, float planetRad_, float planetRot_) {

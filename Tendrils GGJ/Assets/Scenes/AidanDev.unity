@@ -347,8 +347,14 @@ PrefabInstance:
     - target: {fileID: 1989018060391241425, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
         type: 3}
       propertyPath: planetCheckRadius
-      value: 750
+      value: 2000
       objectReference: {fileID: 0}
+    - target: {fileID: 1989018060391241425, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
+        type: 3}
+      propertyPath: ArrowPrefab
+      value: 
+      objectReference: {fileID: 2518187795560144601, guid: 3d6c7c2b611e7cb4daa7899851969abe,
+        type: 3}
     - target: {fileID: 7368948691914852139, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
         type: 3}
       propertyPath: fuelslider

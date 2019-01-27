@@ -14,7 +14,7 @@ public class Character : MonoBehaviour {
     // Checks
     [Range(0, 10)]
     public float groundCheckRadius;
-    [Range(150, 750)]
+    [Range(500, 2000)]
     public float planetCheckRadius;
     public Transform groundCheck;
     public LayerMask isGroundLayer;
@@ -223,7 +223,7 @@ public class Character : MonoBehaviour {
                 y = (unitvector.y * Camera.main.orthographicSize / 1.25f) + transform.position.y;
 
                 float angle_ = Mathf.Atan2(unitvector.y, unitvector.x) * Mathf.Rad2Deg;
-                Quaternion rot = Quaternion.Euler(new Vector3(0.0f, 0.0f, angle_ + 90.0f));
+                Quaternion rot = Quaternion.Euler(new Vector3(0.0f, 0.0f, angle_ - 90.0f));
 
                 GameObject arrow;
                 arrow = Instantiate(ArrowPrefab, new Vector3(x, y, 0.0f), rot);
