@@ -179,12 +179,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1695908088899880174, guid: 0300edb66498fb649a4986df8fb6bd8b,
+    - target: {fileID: 1695908088376147768, guid: 0300edb66498fb649a4986df8fb6bd8b,
         type: 3}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1695908088899880174, guid: 0300edb66498fb649a4986df8fb6bd8b,
+    - target: {fileID: 1695908088376147768, guid: 0300edb66498fb649a4986df8fb6bd8b,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -195,16 +195,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1695908087808872957, guid: 0300edb66498fb649a4986df8fb6bd8b,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695908088376147768, guid: 0300edb66498fb649a4986df8fb6bd8b,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695908088376147768, guid: 0300edb66498fb649a4986df8fb6bd8b,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -219,6 +209,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1695908088899880174, guid: 0300edb66498fb649a4986df8fb6bd8b,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695908088899880174, guid: 0300edb66498fb649a4986df8fb6bd8b,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695908088405062527, guid: 0300edb66498fb649a4986df8fb6bd8b,
+        type: 3}
+      propertyPath: player1
+      value: 
+      objectReference: {fileID: 1271627658}
     - target: {fileID: 671052567, guid: 0300edb66498fb649a4986df8fb6bd8b, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -307,6 +312,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2424fb29d83f10e4e8ee6e693e90c3ff, type: 3}
+--- !u!1 &1271627658 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1989018060391241420, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 1271627657}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1391170865 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1695908089017959100, guid: 0300edb66498fb649a4986df8fb6bd8b,
