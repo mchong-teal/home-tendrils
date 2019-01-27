@@ -13,7 +13,7 @@ public class Money_System : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moneyText = new TextMeshProUGUI();
+        moneyText = money_01;
         money = 0.0f;
         moneyText.text = "P1 T.P. : " + money;
         Relics[0] = 1; //neutral
