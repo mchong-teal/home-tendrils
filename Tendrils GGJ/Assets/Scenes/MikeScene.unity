@@ -112,6 +112,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &541671905 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1695908089017959100, guid: 0300edb66498fb649a4986df8fb6bd8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1722411771}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &760283509 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 470981266, guid: 0300edb66498fb649a4986df8fb6bd8b,
@@ -303,7 +315,7 @@ PrefabInstance:
         type: 3}
       propertyPath: fuelslider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 541671905}
     - target: {fileID: 7368948691914852139, guid: 2424fb29d83f10e4e8ee6e693e90c3ff,
         type: 3}
       propertyPath: jetForce
