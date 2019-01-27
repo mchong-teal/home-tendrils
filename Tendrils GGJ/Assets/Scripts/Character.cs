@@ -10,8 +10,8 @@ public class Character : MonoBehaviour {
     // Speed
     public float spaceSpeed;
     public float planetSpeed;
-    
-    // Checks 
+
+    // Checks
     [Range(0, 10)]
     public float groundCheckRadius;
     [Range(150, 750)]
@@ -103,7 +103,7 @@ public class Character : MonoBehaviour {
         }
 
         anim = GetComponent<Animator>();
-        
+
         if (!anim)
         {
 
@@ -115,7 +115,7 @@ public class Character : MonoBehaviour {
 
         sr = GetComponent<SpriteRenderer>();
     }
-	
+
 	void AnimatorManager()
     {
         if (anim){
@@ -138,7 +138,7 @@ public class Character : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        
+
         InputManager();
         ActionManager();
         MoveManager();
