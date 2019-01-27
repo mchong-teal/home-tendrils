@@ -40,8 +40,7 @@ public class Planet: MonoBehaviour
         this.transform.position = new Vector3(param.x, param.y, 0);
         this.circleCollider = this.GetComponent<CircleCollider2D>();
         Vector3 planetSize = new Vector3(10, 10, 0);
-        transform.localScale = planetSize;
-
+        this.transform.localScale = planetSize;
 
         // Gravity
         this.gravityEffector = GetComponentInChildren<PointEffector2D>();

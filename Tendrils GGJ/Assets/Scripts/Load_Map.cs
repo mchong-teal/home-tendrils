@@ -8,10 +8,10 @@ public static class LoadMap {
     public static List<PlanetParam> LoadPlanets()
     {
         Dictionary<string, string> PLANET_SPRITE_MAP = new Dictionary<string, string>() {
-            {"a", "Planets/desertplanet"},
+            {"a", "Planets/swamp"},
             {"b", "Planets/brownplanet"},
             {"c", "Planets/tinyplanet"},
-            {"d", "Planets/swamp"},
+            {"d", "Planets/desertplanet"},
             {"e", "Planets/Earthlike"}
         };
  
