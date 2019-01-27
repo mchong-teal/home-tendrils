@@ -18,8 +18,8 @@ public class Money_System : MonoBehaviour
         money = new float[2];
         money[0] = 0.0f;
         money[1] = 0.0f;
-        moneyText[0].text = "P1 doubloons: " + money[0];
-        moneyText[1].text = "P2 doubloons: " + money[1];
+        moneyText[0].text = "P1 T.P. : " + money[0];
+        moneyText[1].text = "P2 T.P.: " + money[1];
         Relics[0] = 1; //neutral
         Relics[1] = 1;//good
         Relics[2] = 1;//bad
@@ -30,14 +30,14 @@ public class Money_System : MonoBehaviour
 
         money[playerid] += GainM;
         money[playerid] = (Mathf.Round(money[0] * 100)) / 100.0f;
-        moneyText[playerid].text = "P" + playerid.ToString() + " doubloons: " + money[0];
+        moneyText[playerid].text = "P" + playerid.ToString() + " T.P. : " + money[0];
     }
 
     public void loseMoney(float LoseM, int playerid)
     {
         money[playerid] = money[0] - LoseM;
         money[playerid] = (Mathf.Round(money[0] * 100)) / 100.0f;
-        moneyText[playerid].text = "P" + playerid.ToString() + " doubloons: " + money[playerid];
+        moneyText[playerid].text = "P" + playerid.ToString() + " T.P. : " + money[playerid];
     }
 
 }

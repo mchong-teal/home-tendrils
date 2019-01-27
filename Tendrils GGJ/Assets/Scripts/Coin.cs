@@ -10,7 +10,7 @@ public class Coin : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("trigger");
-        if (other.gameObject.tag == "player_01")  //seperated so the player who hits the coin gets it
+        if (other.gameObject.tag == "Player")  //seperated so the player who hits the coin gets it
         {
             Debug.Log("coin1");
             player1 = other.gameObject;
