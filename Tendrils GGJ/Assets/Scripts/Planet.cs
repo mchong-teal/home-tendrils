@@ -25,14 +25,12 @@ public struct PlanetParam
 
 public class Planet: MonoBehaviour
 {
-    public int planetIdx;
     public float rotation;
+    public int planetIdx;
     // Refs to Unity components
     public GameObject npcPrefab;
     PointEffector2D gravityEffector;
     GameObject npc;
-
-    public float rotation;
 
     // Creates a Planet
     public void InitPlanet(int idx, PlanetParam param)
@@ -60,7 +58,9 @@ public class Planet: MonoBehaviour
     void Update()
     {
         transform.Rotate(0, 0, this.rotation);
-        npc.GetComponent<AI_Controller>().PlanetPosition(this.transform.position, this.transform.localScale.x * this.GetComponent<CircleCollider2D>().radius, this.rotation);
+        int rand = Random.Range(0, 1);
+        if (rand == 0) { rand = -1; }
+        npc.GetComponent<AI_Controller>().PlanetPosition(this.transform.position, this.transform.localScale.x * this.GetComponent<CircleCollider2D>().radius, this.rotation * (float)rand);
         
     }
 

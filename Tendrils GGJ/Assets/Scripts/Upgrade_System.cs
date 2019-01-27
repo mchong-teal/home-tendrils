@@ -6,6 +6,7 @@ public class Upgrade_System : MonoBehaviour
 {
     public bool upgradeSystemActive;
     public GameObject UpgradeMenu;
+    public GameObject AllText;
     public GameObject player1;
     public GameObject player2;
     public float p1U_fuelCost;
@@ -41,6 +42,10 @@ public class Upgrade_System : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            testingEventText();
+        }
         if (Input.GetKeyDown(KeyCode.P)) {
             if (upgradeSystemActive == false)
             {
@@ -99,12 +104,17 @@ public class Upgrade_System : MonoBehaviour
 
         }
 
+        
 
 
 
 
 
 
-
+    }
+    public void testingEventText()
+    {
+        AllText.GetComponent<EventSystem>().eventText.text = " text here"; // put a line like this whenever you want to change the text dont forget to set the object
+        AllText.GetComponent<EventSystem>().Changetext();
     }
 }

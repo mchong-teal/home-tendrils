@@ -19,4 +19,8 @@ public class Rotation : MonoBehaviour {
 	
         
     }
+
+    public void SetRotation() {
+
+    }
 }
