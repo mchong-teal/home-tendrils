@@ -14,7 +14,7 @@ public class Character : MonoBehaviour {
     // Checks 
     [Range(0, 10)]
     public float groundCheckRadius;
-    [Range(50, 250)]
+    [Range(150, 750)]
     public float planetCheckRadius;
     public Transform groundCheck;
     public LayerMask isGroundLayer;
