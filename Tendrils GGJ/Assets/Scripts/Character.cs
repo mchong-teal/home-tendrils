@@ -146,6 +146,7 @@ public class Character : MonoBehaviour {
         AnimatorManager();
         UIManager();
         Flip();
+        BoundingManager();
     }
 
     void Flip()
@@ -331,5 +332,13 @@ public class Character : MonoBehaviour {
     {
         this.galaxy.ConnectPlanets(this.isOnPlanet, this.inventoryPlanet, this.playerId);
         this.inventoryPlanet = -1;
+    }
+
+    void BoundingManager() {
+        if (this.transform.position.x < -1000) { this.transform.position = new Vector2(1499, this.transform.position.y); }
+        else if (this.transform.position.x > 1500) { this.transform.position = new Vector2(-999, this.transform.position.y); }
+
+        if (this.transform.position.y < -1000) { this.transform.position = new Vector2(this.transform.position.x, 1499); }
+        else if (this.transform.position.y > 1500) { this.transform.position = new Vector2(this.transform.position.x, -999); }
     }
 }
