@@ -150,7 +150,6 @@ public class Character : MonoBehaviour {
         InputManager();
         ActionManager();
         MoveManager();
-        
         AnimatorManager();
         UIManager();
     }
