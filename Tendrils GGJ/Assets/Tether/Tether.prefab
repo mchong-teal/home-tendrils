@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6688697559119056183}
   - component: {fileID: 6688697559119056182}
   - component: {fileID: 6688697559119056180}
+  - component: {fileID: 1992219912519910338}
   m_Layer: 0
   m_Name: Tether
   m_TagString: Untagged
@@ -139,3 +140,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 710e2e351d485924abe23fd4cc7b4554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!68 &1992219912519910338
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6688697559119056185}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -10.502156, y: -14.457777}
+  - {x: -9.502156, y: -14.457777}

@@ -12,4 +12,6 @@ public static class Constants {
 
 
     public const int PLANET_GRAV_BASE = -1900;
+
+    public const int TETHER_FORCE = 20;
 }

@@ -367,4 +367,16 @@ public class Character : MonoBehaviour {
         if (this.transform.position.y < -1000) { this.transform.position = new Vector2(this.transform.position.x, 1499); }
         else if (this.transform.position.y > 1500) { this.transform.position = new Vector2(this.transform.position.x, -999); }
     }
+
+    public void BoostAlongVector(Vector2 directionvector) {
+        float projection = Vector2.Dot(rb.velocity, directionvector);
+        Vector2 force = directionvector.normalized;
+        if (projection < 0) {
+            force *= -1;
+        } else if (projection == 0) {
+            return;
+        }
+        rb.AddForce(force * Constants.TETHER_FORCE, ForceMode2D.Force);
+        Debug.Log("boosting!");
+    }
 }
